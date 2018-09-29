@@ -1,0 +1,58 @@
+% last updated in April 2002 by Antje Endemann
+% Based on CVPR 07 and LNCS, with modifications by DAF, AZ and elle, 2008 and AA, 2010, and CC, 2011; TT, 2014; AAS, 2016
+
+\documentclass[runningheads]{llncs}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb} % define this before the line numbering.
+\usepackage{ruler}
+\usepackage{color}
+\usepackage[width=122mm,left=12mm,paperwidth=146mm,height=193mm,top=12mm,paperheight=217mm]{geometry}
+\usepackage{multirow, multicol}
+    
+% \newtheorem{theorem}{Theorem}
+
+\begin{document}
+% \renewcommand\thelinenumber{\color[rgb]{0.2,0.5,0.8}\normalfont\sffamily\scriptsize\arabic{linenumber}\color[rgb]{0,0,0}}
+% \renewcommand\makeLineNumber {\hss\thelinenumber\ \hspace{6mm} \rlap{\hskip\textwidth\ \hspace{6.5mm}\thelinenumber}}
+% \linenumbers
+\pagestyle{headings}
+\mainmatter
+\def\ECCV18SubNumber{1452}  % Insert your submission number here
+
+\title{Hidden Markov Model} % Replace with your title
+
+\titlerunning{ECCV-18 submission ID \ECCV18SubNumber}
+
+\authorrunning{ECCV-18 submission ID \ECCV18SubNumber}
+
+\author{Depu Meng}
+\institute{Oct. $2018$}
+
+
+\maketitle
+\section{Basic Concepts \& Examples}
+\subsection{Basic Concepts}
+\paragraph{Definition 1.1}
+Assume $X = \{ X_n; n \geq 1 \} $ is a Markov chain over finite state space
+$\Phi = \{ 1, 2, ...,K \} $, if states of $X$ are unobservable,
+$Y = \{ Y_n; n \geq 1 \} $ is an observable random variable series over
+finite set $V = \{ v_1, v_2,...,v_L \} $ that is correlated with $X$,
+then $(X, Y) = \{ (X_n, Y_n); n \geq 1 \} $ is a \emph{Hidden Markov Chain}.
+\par
+Denote $\pi = \{ \pi_1, \pi_2,...,\pi_k \} $ is the initial distribution of $X$,
+$A = [a_{ij}]$ is the transition matrix of $X$
+\begin{align}
+    a_{ij} = P\{X_{n+1} = j | X_n = i\}, i, j \in \Phi
+\end{align}
+is the one-step transition probality of X. Denote
+\begin{align}
+    b_{ij} = P\{ Y_n = v_j | X_n = i \}, i \in \Phi, v_j \in V
+\end{align}
+represents the probability that $Y$ equals to $v_j$ given $X$ is at state $i$ at time $n$.
+If $X$ is homogeneous, then $Y$ is also irrelavent with time $n$.
+Denote $B = [b_{ij}]$ as the observation probability matrix.
+Due to the unobservability of $X$, $\pi, A, B$ can not be directly measured.
+Generally, we call parameter set $\lambda = \{ \pi, A, B \} $
+the math model of Hidden Markov chain $(X, Y)$, as well as \emph{Hidden Markov Model} (HMM).
+
+\end{document}
