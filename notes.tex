@@ -54,5 +54,17 @@ Denote $B = [b_{ij}]$ as the observation probability matrix.
 Due to the unobservability of $X$, $\pi, A, B$ can not be directly measured.
 Generally, we call parameter set $\lambda = \{ \pi, A, B \} $
 the math model of Hidden Markov chain $(X, Y)$, as well as \emph{Hidden Markov Model} (HMM).
+\paragraph{Property 1.1}
+Assume $N$ is the length of time on observation,
+denote $\mathbf{X}= \{ X_1, X_2,..., X_N \} $, $\mathbf{Y} = \{ Y_1, Y_2,..., Y_N \} $
+as the sample series of Markov chain $X$ and observation series $Y$ in the time period $1\approx N$
+respectively, then the joint distribution of $\mathbf{X}$ and $\mathbf{Y}$ satisfy
+the following \emph{Hidden Markov Condition}.
+\begin{align}
+    P\{ \mathbf{X} = x, \mathbf{Y} = y \} = \pi_{i_1} b_{i_1 j_1}... b_{i_{N-1} j_{N-1}} b_{i_{N-1} j_{N}} b_{i_{N} j_{N}},
+\end{align}
+where $x = \{ i_1, ..., i_N \} $, $y = \{ v_{j_1}, ..., v_{j_N} \} $.
+
+
 
 \end{document}
