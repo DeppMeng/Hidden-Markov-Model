@@ -57,7 +57,7 @@ the math model of Hidden Markov chain $(X, Y)$, as well as \emph{Hidden Markov M
 \paragraph{Property 1.1}
 Assume $N$ is the length of time on observation,
 denote $\mathbf{X}= \{ X_1, X_2,..., X_N \} $, $\mathbf{Y} = \{ Y_1, Y_2,..., Y_N \} $
-as the sample series of Markov chain $X$ and observation series $Y$ in the time period $1\approx N$
+as the sample series of Markov chain $X$ and observation series $Y$ in the time period $1\sim N$
 respectively, then the joint distribution of $\mathbf{X}$ and $\mathbf{Y}$ satisfy
 the following \emph{Hidden Markov Condition}.
 \begin{align}
@@ -109,5 +109,63 @@ problem, as well as \emph{Decoding} problem.
 From a series of observation samples $\mathbf{Y} = \{ Y_1, ..., Y_n \} $,
 give the best estimate of parameter set $\lambda = \{ \pi, A, B \} $,
 we call it \emph{Model Learning} problem.
+
+\subsection{Solutions}
+
+\paragraph{Solution to Problem 1}
+To solve Problem 1 is mainly to solve $P \{ \mathbf{Y} | \lambda \} $,
+for different $\lambda$, we can compare with their corresponding
+$P \{ \mathbf{Y} | \lambda \} $, and choose the largest one.
+So how to compute $P \{ \mathbf{Y} | \lambda \} $?
+\begin{align}
+    P \{ \mathbf{Y} = y | \lambda \}
+    &= \sum_x P \{ \mathbf{Y} = y, \mathbf{X} = x | \lambda \} \\
+    &= \sum_x \pi_{i_1} b_{i_1 j_1}... b_{i_{N-1} j_{N-1}} b_{i_{N-1} j_{N}} b_{i_{N} j_{N}}
+\end{align}
+\par
+In order to make the writing more convenient, we introduce notation
+$\alpha_n(i)$ and $\beta_n(i)$ first.
+\begin{align}
+    \alpha_n(i) = P \{ Y_1 = v_{j_1},..., Y_n = v_{j_n}, X_n = i | \lambda \}
+\end{align}
+\par
+Recurrence relation of $\alpha_n(i)$.
+\begin{align}
+    \alpha_n(i) = \sum_{j=1}^K \alpha_n(j) a_{ji} b_{ij_{n+1}}, n = 1,..., N - 1
+\end{align}
+\paragraph{proof}
+\begin{align}
+    &\alpha_{n+1}(i) 
+    = P \{ Y_1 = v_{j_1}, Y_n = v_{j_n}, Y_{n+1} = v_{j_{n+1}}, X_{n+1} = i | \lambda \} \\
+    &= \sum_{k=1}^K P \{ Y_1 = v_{j_1},..., Y_n = v_{j_n}, Y_{n+1} = v_{j_{n+1}}, X_{n} = k, X_{n+1} = i | \lambda \} \\
+    &= \sum_{k=1}^K P_A P_B P_C
+\end{align}
+where
+\begin{align}
+    &P_A = P \{ Y_1 = v_{j_1},..., Y_n = v_{j_n}, X_{n} = k | \lambda \} \\
+    &P_B = P \{ X_{n+1} = i | Y_1 = v_{j_1},..., Y_n = v_{j_n}, X_{n} = k, \lambda \} \\ 
+    &P_C = P \{ Y_{n+1} = v_{j_{n+1}} | Y_1 = v_{j_1},..., Y_n = v_{j_n}, X_{n} = k, X_{n+1} = i, \lambda\}
+\end{align}
+Notice that for $P_A$, we have
+\begin{align}
+    P_A = P \{ Y_1 = v_{j_1},..., Y_n = v_{j_n}, X_{n} = k | \lambda \} = \alpha_n(k) \\
+\end{align}
+For $P_B$, we have
+\begin{align}
+    P_B &= P \{ X_{n+1} = i | Y_1 = v_{j_1},..., Y_n = v_{j_n}, X_{n} = k, \lambda \} \\
+    &= P \{ X_{n+1} = i | X_{n} = k, \lambda \} \\
+    &= a_{ki}
+\end{align}
+For $P_C$, we have
+\begin{align}
+    P_C &= P \{ Y_{n+1} = v_{j_{n+1}} | Y_1 = v_{j_1},..., Y_n = v_{j_n}, X_{n} = k, X_{n+1} = i, \lambda\} \\
+    &= P \{ Y_{n+1} = v_{j_{n+1}} | X_{n+1} = i, \lambda\} \\
+    &= b_{ij_{n+1}}
+\end{align}
+Combine the three equations together, we have
+\begin{align}
+    \alpha_{n+1}(i) &= \sum_{k=1}^K P_A P_B P_C \\
+    &= \sum_{k=1}^K \alpha_n(k) a_{ki} b_{ij_{n+1}}
+\end{align} \qed
 
 \end{document}
