@@ -126,7 +126,8 @@ So how to compute $P \{ \mathbf{Y} | \lambda \} $?
 In order to make the writing more convenient, we introduce notation
 $\alpha_n(i)$ and $\beta_n(i)$ first.
 \begin{align}
-    \alpha_n(i) = P \{ Y_1 = v_{j_1},..., Y_n = v_{j_n}, X_n = i | \lambda \}
+    &\alpha_n(i) = P \{ Y_1 = v_{j_1},..., Y_n = v_{j_n}, X_n = i | \lambda \} \\
+    &\beta_n(i) = P \{ Y_{n+1} = v_{j_{n+1}},...,Y_N = v_{j_N} | X_n = i, \lambda \}
 \end{align}
 \par
 Recurrence relation of $\alpha_n(i)$.
@@ -167,5 +168,57 @@ Combine the three equations together, we have
     \alpha_{n+1}(i) &= \sum_{k=1}^K P_A P_B P_C \\
     &= \sum_{k=1}^K \alpha_n(k) a_{ki} b_{ij_{n+1}}
 \end{align} \qed
+
+\par
+Recurrence relation of $\beta_n(i)$
+\begin{align}
+    \beta_n(i) = \sum_{j=1}^K \beta_{n+1}(j) a_{ij} b_{jj_{n+1}}, n = 1,...,N - 1
+\end{align}
+\emph{proof}
+\begin{align}
+    \beta_{n}(i) &= P \{ Y_{n+1} = v_{j_{n+1}},...,Y_N = v_{j_N} | X_n = i, \lambda \} \\
+    &= \sum_{k=1}^K P \{ Y_{n+1} = v_{j_{n+1}},...,Y_N = v_{j_N}, X_{n+1} = k | X_n = i, \lambda \} \\
+    &= \sum_{k=1}^K P_X P_Y P_Z
+\end{align}
+where
+\begin{align}
+    &P_X = P \{ X_{n+1} = k | X_n = i, \lambda \} \\
+    &P_Y = P \{ Y_{n+2} = v_{j_{n+1}},..., Y_N = v_{j_n} | X_{n+1} = k, X_n = i, \lambda \} \\
+    &P_Z = P \{ Y_{n+1} = v_{j_{n+1}} | X_{n+1} = k, X_n = i, Y_{n+2} = v_{j_{n+1}},..., Y_N = v_{j_n}, \lambda \}
+\end{align}
+For $P_X$, we have
+\begin{align}
+    P_X = P \{ X_{n+1} = k | X_n = i, \lambda \} = a_{ik}
+\end{align}
+For $P_Y$, we have
+\begin{align}
+    P_Y &= P \{ Y_{n+2} = v_{j_{n+1}},..., Y_N = v_{j_n} | X_{n+1} = k, X_n = i, \lambda \} \\
+    &= P \{ Y_{n+2} = v_{j_{n+1}},..., Y_N = v_{j_n} | X_{n+1} = k, \lambda \} \\
+    &= \beta_{n+1}(k)
+\end{align}
+For $P_Z$, we have
+\begin{align}
+    P_Z &= P \{ Y_{n+1} = v_{j_{n+1}} | X_{n+1} = k, X_n = i, Y_{n+2} = v_{j_{n+1}},..., Y_N = v_{j_n}, \lambda \} \\
+    &= P \{ Y_{n+1} = v_{j_{n+1}} | X_{n+1} = k, \lambda \} \\
+    &= b_{kj_{n+1}}
+\end{align}
+Combine the three equations, we have
+\begin{align}
+    \beta_n(i) &= \sum_{k=1}^K P_X P_Y P_Z \\
+    &= \sum_{k=1}^K \beta_{n+1}(k) a_{ik} b_{kj_{n+1}}
+\end{align} \qed
+\par
+From the $\alpha_n(i), \beta_n(i)$ defined above, we have
+\begin{align}
+    &P \{ \mathbf{Y} = y | \lambda \} = \sum_{j=1}^K \alpha_N(j) \\
+    &P \{ \mathbf{Y} = y | \lambda \} = \sum_{j=1}^K \beta_1(j) \pi_j b_{jj_1} \\
+\end{align}
+
+\par
+If we divide observation series $\mathbf{Y} = \{ Y_1,..., Y_N \}$
+into $\{ Y_1,..., Y_n \}$ and  $\{ Y_{n+1},..., Y_N \}$, then we have
+\begin{align}
+    P \{ \mathbf{Y} = y, X_n = i | \lambda \} = \alpha_n(i) \beta_n(i)
+\end{align}
 
 \end{document}
