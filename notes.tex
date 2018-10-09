@@ -252,7 +252,18 @@ denote
 Why $\delta_n(i)$?
 Because initially we want to compute
 \begin{align}
-    \mathop{\arg\max}_{i_1i_2...i_{n-1}} P \{ X_n = i, X_{n-1} = i_{n-1},..., X_1 = i_1| Y_n = v_{j_n},..., Y_1 = v_{j_1}, \lambda \}
+    \mathop{\arg\max}_{i_1i_2...i_{n-1}i} P \{ X_n = i, X_{n-1} = i_{n-1},..., X_1 = i_1| Y_n = v_{j_n},..., Y_1 = v_{j_1}, \lambda \}
+\end{align}
+we have
+\begin{align}
+    &P \{ X_n = i, X_{n-1} = i_{n-1},..., X_1 = i_1| Y_n = v_{j_n},..., Y_1 = v_{j_1}, \lambda \} \\
+    = &\frac{P \{ X_n = i, X_{n-1} = i_{n-1},..., X_1 = i_1; Y_n = v_{j_n},..., Y_1 = v_{j_1} |\lambda \}}
+    {\sum_{i_1} \sum_{i_2}...\sum_{i_i} P \{ X_n = i, X_{n-1} = i_{n-1},..., X_1 = i_1; Y_n = v_{j_n},..., Y_1 = v_{j_1} |\lambda \}}
+\end{align}
+due to the denominator is irrelavent to $i_1, i_2,..., i$, so equtation $52$
+is equals to
+\begin{align}
+    \mathop{\arg\max}_{i_1i_2...i_{n-1}i} P \{ X_n = i, X_{n-1} = i_{n-1},..., X_1 = i_1| Y_n = v_{j_n},..., Y_1 = v_{j_1}, \lambda \}
 \end{align}
 
 \end{document}
