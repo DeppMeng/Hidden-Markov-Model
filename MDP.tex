@@ -1,0 +1,75 @@
+% last updated in April 2002 by Antje Endemann
+% Based on CVPR 07 and LNCS, with modifications by DAF, AZ and elle, 2008 and AA, 2010, and CC, 2011; TT, 2014; AAS, 2016
+
+\documentclass[runningheads]{llncs}
+    \usepackage{graphicx}
+    \usepackage{amsmath,amssymb} % define this before the line numbering.
+    \usepackage{ruler}
+    \usepackage{color}
+    \usepackage[width=122mm,left=12mm,paperwidth=146mm,height=193mm,top=12mm,paperheight=217mm]{geometry}
+    \usepackage{multirow, multicol}
+        
+    % \newtheorem{theorem}{Theorem}
+    
+    \begin{document}
+    % \renewcommand\thelinenumber{\color[rgb]{0.2,0.5,0.8}\normalfont\sffamily\scriptsize\arabic{linenumber}\color[rgb]{0,0,0}}
+    % \renewcommand\makeLineNumber {\hss\thelinenumber\ \hspace{6mm} \rlap{\hskip\textwidth\ \hspace{6.5mm}\thelinenumber}}
+    % \linenumbers
+    \pagestyle{headings}
+    \mainmatter
+    \def\ECCV18SubNumber{1452}  % Insert your submission number here
+    
+    \title{Markov Decision Process} % Replace with your title
+    
+    \titlerunning{ECCV-18 submission ID \ECCV18SubNumber}
+    
+    \authorrunning{ECCV-18 submission ID \ECCV18SubNumber}
+    
+    \author{Depu Meng}
+    \institute{Oct. $2018$}
+    
+    
+    \maketitle
+    \section{Basic Concepts \& Examples}
+    \emph{Markov Decision Process} (MDP) is a Markov Process that decisions are involved.
+    Generally, an MDP can described by a quintuple:
+    \begin{itemize}
+        \item A Markov Process or an Extended Markov Process to describe the process.
+        \item A state space.
+        \item An action space.
+        \item A state transition function.
+        \item A performance function.
+    \end{itemize}
+
+    MDP can be divided into Continuous-Time MDP and Discrete-Time MDP
+    according to the time factor of the Markov Process;
+    MDP can also be divided into MDP and Semi-MDP and Partially-Observable MDP.
+
+    \subsection{Policy and policy space}
+    In this section, we will take policy and policy space in DTMDP as an example.
+    \par
+    A DTMDP quintuple can be denoted as $\{ X, \Phi, A, P_{ij}(a), f(i, a) \}$,
+    \par\noindent
+    $X = \{ X_n; n \geq 0 \}$ is a Discrete-Time Markov Process, $\Phi = \{i \}$
+    and $A = \{ a \}$ are state space and action space of this process respectively.
+    For $P_{ij}(a)$, appearently we have $P_{ij}(a) \geq 0$ and
+    $\sum_{j \in \Phi} P_{ij}(a) = 1$.
+    A DTMDP sample orbit can be described as $\{ i_0, a_0, i_1, a_1,...\}$.
+    Denote $h_n = \{ i_0, a_0,...,i_{n-1}, a_{n-1}, i_n \}$ as the history
+    before time $n$.
+    \par
+    A general policy is defined as
+    \begin{align}
+        v = (v_0(a | h_0), v_1(a | h_1),...)    
+    \end{align}
+    Infact, a general policy is a series of action defined on decision time,
+    which is also a stochastic policy if not specified.
+    The set that contains all policies like (1) is a policy space, denoted as $\Pi$.
+    \par
+    For a policy, if for each $v_n(a|h_n)$, we select action $a$ w.p.1, then we call it
+    a determined policy, all determined polices is denoted as $\Pi^d$.
+    \par
+    For a policy, if each $v_n(a|h_n)$ only related to initial state $i_0$ and state
+    of time $n$ $i_n$, i.e., for any $n$, we have $v_n(a|h_n) = v_n(a|i_0, i_n)$,
+    then we call it a semi-Markov policy, denoted as $\Pi_{sm}$.
+    \end{document}
