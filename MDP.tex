@@ -72,4 +72,26 @@
     For a policy, if each $v_n(a|h_n)$ only related to initial state $i_0$ and state
     of time $n$ $i_n$, i.e., for any $n$, we have $v_n(a|h_n) = v_n(a|i_0, i_n)$,
     then we call it a semi-Markov policy, denoted as $\Pi_{sm}$.
+    Similarily, we can define Markov policy $\Pi_m$.
+    \par
+    For a Markov policy, if it is also determined policy, and $v_n(a|i_n) = v(a|i)$,
+    then we call it determined steady Markov policy $\Pi_s^d$,
+    which is a mapping from state space to action space, i.e., $v: \Phi \rightarrow A$.
+    \par
+    If not specified, we only need to find the optimal policy in the determined steady
+    policy set.
+
+    \subsection{Performance evaluation}
+    \subsubsection{Performance evaluations of DTMDP}
+    DTMDP performance evaluations can be devided into the following three classes.
+    \begin{align}
+        \eta_N^v(i) = \sum_{n=0}^N E_v \{ f(X_n, v(X_n)) | X_0 = i \}, i \in \Phi
+    \end{align}
+    where $E_v$ means the expectation over policy $v \in \Pi$. This is called finite
+    time performance evaluation.
+    \begin{align}
+        \eta_\alpha^v(i) = \sum_{n=0}^\infty E_v \{ \alpha^n f(X_n, v(X_n)) | X_0 = i \}, i \in \Phi
+    \end{align}
+    where $\alpha$ is called the discount factor.
+
     \end{document}
