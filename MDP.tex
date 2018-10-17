@@ -87,11 +87,23 @@
     \begin{align}
         \eta_N^v(i) = \sum_{n=0}^N E_v \{ f(X_n, v(X_n)) | X_0 = i \}, i \in \Phi
     \end{align}
-    where $E_v$ means the expectation over policy $v \in \Pi$. This is called finite
-    time performance evaluation.
+    where $E_v$ means the expectation over policy $v \in \Pi$. This is called \emph{finite
+    time performance evaluation}.
     \begin{align}
-        \eta_\alpha^v(i) = \sum_{n=0}^\infty E_v \{ \alpha^n f(X_n, v(X_n)) | X_0 = i \}, i \in \Phi
+        \eta_\alpha^v(i) = E_v \{ \sum_{n=0}^\infty \alpha^n f(X_n, v(X_n)) | X_0 = i \}, i \in \Phi
     \end{align}
-    where $\alpha$ is called the discount factor.
+    where $\alpha$ is called the discount factor. This is called \emph{infinite time
+    discounted performance evaluation}.
+    \begin{align}
+        \eta^v(i) = \mathop{\lim}_{N\rightarrow\infty} \frac{1}{N} E_v \{ \sum_{n=0}^{N-1} f(X_n, v(X_n)) | X_0 = i \}, i \in \Phi
+    \end{align}
+    This is called \emph{infinite time average performance evaluation}.
 
+    \subsubsection{Performance evaluations of CTMDP}
+    Firstly we show the quintuple representation of a CTMDP.
+    A CTMDP can be represented as $\{ Y, \Phi, A, a_{ij}(a), f(i, a) \}$,
+    $Y = \{ Y_t; t \geq 0 \}$ is a continuous-time Markov process with
+    state space $\Phi = \{ i \}$ and action space $A = \{a\}$.
+    The transition speed $a_{ij}(a)$ satisfies for any $i, j \in \Phi, i \neq j, a \in A$,
+    $a_{ij}(a) \geq 0, a_{ii}(a) \leq 0$ and $\sum_{j \in \Phi} a_{ij}(a) = 0$.
     \end{document}
