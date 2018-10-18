@@ -106,4 +106,106 @@
     state space $\Phi = \{ i \}$ and action space $A = \{a\}$.
     The transition speed $a_{ij}(a)$ satisfies for any $i, j \in \Phi, i \neq j, a \in A$,
     $a_{ij}(a) \geq 0, a_{ii}(a) \leq 0$ and $\sum_{j \in \Phi} a_{ij}(a) = 0$.
+
+    \par
+    In this study, we assume that the decision point is always the time when state transits,
+    then we can have a similar definition as DTMDP.
+    \begin{align}
+        \eta_\alpha^v(i) = E_v \{ \int_{0}^\infty e^{-\alpha t} f(Y_t, v(Y_t)) dt | Y_0 = i \}, i \in \Phi
+    \end{align}
+    We call it \emph{infinite time
+    discounted performance evaluation}.
+    \begin{align}
+        \eta^v(i) = \mathop{\lim}_{T\rightarrow\infty} \frac{1}{T} E_v \{ \int{0}^{T} f(Y_t, v(Y_t)) dt | Y_0 = i \}, i \in \Phi
+    \end{align}
+    This is called \emph{infinite time average performance evaluation}.
+    \par
+    If the Markov process Y is ergodic, then $\eta^v(i)$ is irrelevant to
+    initial state, so we have
+    \begin{align}
+        \eta^v = \sum_{i \in \Phi} p^v (i) f(i, v(i)) = p^v f^v
+    \end{align}
+    where $p^v(i), i \in \Phi$ is the steady distribution of Markov process $Y$
+    with policy $v$. We call $\eta^v$
+    the performance measure under policy $v$.
+    \par
+    One objective of MDP is to find $v^* \in \Pi$ so that all performance is optimal.
+
+    \section{DTMDP}
+    \subsection{Performance potential}
+    For an ergodic Markov Chain $X = \{ X_n; n \geq 0 \}$, its state space $\Phi = \{ 1, 2,..., K \}$,
+    finite action space $A$, policy space determined steady policy set $\Pi_s^d$,
+    with policy $v \in \Pi_s^d$, its transition matrix $P^v = [P_{ij}(v(i))]$,
+    steady distribution $\pi^v = (\pi^v(1),..., \pi^v(K))$ satisfies
+    \begin{align}
+        \pi^v P^v = \pi^v, \pi^v e = 1
+    \end{align}
+    where $e = (1, 1,..., 1)^\tau$.
+    \par
+    We only consider the infinite time average performance evaluation.
+    \begin{align}
+        \eta^v = \sum_{n=0}^K \pi^v f(i, v(i)) = \pi^v f^v
+    \end{align}
+    where $f^v = (f(1, v(1)),...,f(K, v(K))^\tau$.
+    \par
+    Denote 
+    \begin{align}
+        g^v(i) = E \{ \sum_{n=0}^\infty [f(X_n, v(X_n)) - \eta^v] | X_0 = i \}, i = \Phi
+    \end{align}
+    \emph{Definition} $g^v = (g^v(1),..., g^v(K))^\tau$ is called performance potential vector,
+    or potential of Markov Chain $X$ w.r.t performance function $f^v$ at state $i$.
+    \par\noindent
+    \emph{Lemma}
+    potential $g$ satisfies Poisson equation
+    \begin{align}
+        (I - P^v)g^v = f^v - \eta^v e
+    \end{align}
+    all potentials can be represented as 
+    \begin{align}
+        g^v = (I - P^v + e \pi)^{-1} f^v + ce
+    \end{align}
+    where $c$ can be any constant.
+    \emph{proof}
+    \begin{align}
+        g(i) &= \mathop{\lim}_{N \rightarrow \infty} E \{ \sum_{n=0}^N [f(X_n, v(X_n)) - \eta^v] | X_0 = i \} \\
+        &= \mathop{\lim}_{N \rightarrow \infty}  \sum_{n=0}^N E [f(X_n, v(X_n)) - \eta^v | X_0 = i ] \\
+        &= f(i, v(i)) - \eta^v + \mathop{\lim}_{N \rightarrow \infty} \sum_{n=1}^N E [f(X_n, v(X_n)) - \eta^v | X_0 = i ] \\
+        &= f(i, v(i)) - \eta^v + \sum_{j \in \Phi} P^v_{ij} \mathop{\lim}_{N \rightarrow \infty} \sum_{n=1}^N E [f(X_n, v(X_n)) - \eta^v | X_1 = j ] \\
+        &= f(i, v(i)) - \eta^v + \sum_{j \in \Phi} P^v_{ij} g^v(j)
+    \end{align}
+    that is,
+    \begin{align}
+        g^v &= f^v - \eta^v e + P^v g^v \\
+        (I - P^v)g^v &= f^v - \eta^v e
+    \end{align}
+    \par
+    Appearently $rank (I - P^v) = K - 1$, so that solution space of equation $(I - P^v) g^v$ is 1-dimensional
+    and $g^v = e$ is one solution. Then we need a particular solution of the equation that satisfies $\pi g = \eta$.
+    That is 
+    \begin{align}
+        g^v = (I - P^v + e\pi)^{-1}f^v
+    \end{align} \qed
+
+    Theoretically performance potential can be solved from Poisson equation,
+    but when state space is too large, it is not very easy to be solved.
+    So we often use sample orbit to estimate it. Denote
+    \begin{align}
+        g_L(i) = E[\sum_{l=0}^{L-1}f(X_l)|X_0=i] - L\eta
+    \end{align}
+    $g(i) = \mathop{\lim}_{L \rightarrow \infty} g_L(i)$, because of the property of potential,
+    we can ignore constant term $L\eta$.
+    \begin{align}
+        g_L(i) \approx E[\sum_{l=0}^{L-1}f(X_l)|X_0=i]
+    \end{align}
+    denote
+    \begin{align}
+        g_{L,N}(i) = \frac{\sum_{n=0}^{N-L+1} I_i(X_n) [\sum_{l=0}^{L-1}f(X_l)|X_0=i]}{\sum_{n=0}^{N-L+1} I_i(X_n)}
+    \end{align}
+    where $I_i(x)$ is characteristic function of state $i$, so we have
+    \begin{align}
+        g_L(i) = \mathop{\lim}_{N\rightarrow \infty} g_{L,N}(i), (w.p.1)
+    \end{align}
+    \subsection{Performance optimization}
+
+
     \end{document}
