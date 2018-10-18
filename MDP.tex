@@ -206,6 +206,39 @@
         g_L(i) = \mathop{\lim}_{N\rightarrow \infty} g_{L,N}(i), (w.p.1)
     \end{align}
     \subsection{Performance optimization}
-
+    \subsubsection{Performance difference}
+    Denote $\eta^u, \pi^u, P^u, g^u$ and $\eta^v, \pi^v, P^v, g^v$
+    are values under policy $u$ and $v$ respectively,
+    from Poisson equation, we have
+    \begin{align}
+        (I - P^u)g^u &= f^u - \eta^u e \\
+        (\pi^v - \pi^vP^u)g^u &= \pi^v f^u - \pi^v\eta^u e \\
+        \eta^u &= \pi^v f^u - (\pi^v - \pi^vP^u)g^u \\
+        \eta^u &= \pi^v f^u - (\pi^v P^v - \pi^vP^u)g^u \\
+        \eta^u &= \pi^v f^u - \pi^v (P^v - P^u)g^u \\
+    \end{align} 
+    with $\eta^v = \pi^v f^v$, we have performance difference formula
+    \begin{align}
+        \eta^u - \eta^v &= \pi^v f^u - \pi^v (P^v - P^u)g^u - \pi^v f^v \\
+        &= \pi^v [(P^u + f^u) - (P^v + f^v)]
+    \end{align}
+    for $x = \{ x_1,...,x_K \}$ and $y = \{ y_1,...,y_K \}$, $x \prec y$
+    means for any $i$, we have $x_i \leq y_i$ and there exists at least one
+    $j, 1 \leq j \leq K$ satisfies $x_j < y_j$.
+    \par\noindent
+    \emph{Lemma}
+    \par
+    (1) If
+    \begin{align}
+        P^ug^u + f^u \prec P^vg^v + f^v
+    \end{align}
+    then $\eta^u < \eta^v$.
+    \par
+    (2) $v^*$ is the optimal policy of infinite time average performance
+    if and only if for any $v \in \Pi_s^d$,
+    \begin{align}
+        P^{v^*}g^{v^*} + f^{v^*} \leq P^vg^{v^*} + f^v
+    \end{align}
+    we call it optimal inequality.
 
     \end{document}
