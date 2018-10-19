@@ -116,7 +116,7 @@
     We call it \emph{infinite time
     discounted performance evaluation}.
     \begin{align}
-        \eta^v(i) = \mathop{\lim}_{T\rightarrow\infty} \frac{1}{T} E_v \{ \int{0}^{T} f(Y_t, v(Y_t)) dt | Y_0 = i \}, i \in \Phi
+        \eta^v(i) = \mathop{\lim}_{T\rightarrow\infty} \frac{1}{T} E_v \{ \int_{0}^{T} f(Y_t, v(Y_t)) dt | Y_0 = i \}, i \in \Phi
     \end{align}
     This is called \emph{infinite time average performance evaluation}.
     \par
@@ -291,5 +291,65 @@
     \end{align}
 
     \section{CTMDP}
+    \subsection{Realization matrix and performance potential}
+    \subsubsection{Performance measure}
+    Consider a ergodic Markov process $Y = \{ Y_t; t \geq 0 \}$ with
+    state space $\Phi = \{ 1, 2,..., K \}$ and infinitesimal generator
+    matrix $A = [a_{ij}]$. $Y$ has unique steady distribution
+    $p = (p(1),..., p(K))$, and $p(i) > 0, i \in \Phi$. We have,
+    \begin{align}
+        pe = 1, Ae = 0, pA = 0
+    \end{align}
+    steady performance measure $\eta$ is the expectation of $f$ w.r.t $p$
+    \begin{align}
+        \eta = \sum_{i = 1}^K p(i) f(i) = pf
+    \end{align}
+    which is also the infinite time average performance measure.
+    \subsubsection{Realization matrix and performance potential}
+    Firstly we introduce the concept of \emph{group inverse of infinitesimal generator matrix}.
+    \par\noindent
+    \emph{Definition}
+    \begin{align}
+        A_p = \{ A: pA = 0, Ae = 0 \}
+    \end{align}
+    $A_p$ is a group that has multiplication identity element $I-ep$.
+    
+    \par\noindent
+    \emph{Definition}
+    Inverse of $A$ in group $A_p$ is called the group inverse of $A$, denoted as $A^\#$
+    \par\noindent
+    \emph{Lemma} $A + ep$ is invertible.
+    \par\noindent
+    \emph{proof} If $A + ep$ is not invertible, then there exists a vector $y \neq 0$
+    so that $y(A+ep) = 0$.
+    \begin{align}
+        y(A+ep) &= 0 \\
+        yAe + yepe &= 0 \\
+        ye &= 0
+    \end{align}
+    then we have $yA = 0$ as well.
+    Notice that from equation $pe = 1, pA = 0$ we can get the only solution
+    $p$, so that without equation $ye = 1$ we can get $y$ must satisfies
+    $y = cp, c \neq 0$, which is conflict with $ye = 0$. \qed
+    \par\noindent
+    \emph{Lemma}
+    Group inverse of $A$ is
+    \begin{align}
+        A^\# = (A + ep)^{-1} - ep
+    \end{align}
+    \emph{proof}
+    \begin{align}
+        A[(A+ep)^{-1} - ep] &= I - ep \\
+        A[(A+ep)^{-1} - ep](A + ep) &= (I - ep)(A + ep) \\
+        A - AepA - Aepep &= A + ep - epA - epep \\
+        A &= A + ep - ep 
+    \end{align} \qed
+    \par
+    For any $i, j \in \Phi$, let $Y^{i} = \{ Y_t: Y_0 = i; t \geq 0 \}$ and $Y^{j} = \{ Y_t: Y_0 = j; t \geq 0 \}$,
+    for any $i, j \in \Phi$, $Y^i$ and $Y^j$ are independent.
+    Define $Z^{i,j} = (Y^i, Y^j)$, then $Z^{i, j}$ is a Markov process that has
+    state space $\Phi \times \Phi$. Appearently $Z^{i,j}$ is ergodic.
+    Denote $S = \{ (k, k): k \in \Phi \}$,
+    we define $T^{ij} = \mathop{\inf} \{ t: t \geq 0, Z^{ij}_t \in S \}$.
 
     \end{document}
