@@ -220,7 +220,7 @@
     with $\eta^v = \pi^v f^v$, we have performance difference formula
     \begin{align}
         \eta^u - \eta^v &= \pi^v f^u - \pi^v (P^v - P^u)g^u - \pi^v f^v \\
-        &= \pi^v [(P^u + f^u) - (P^v + f^v)]
+        &= \pi^v [(P^u g^u + f^u) - (P^v g^u + f^v)]
     \end{align}
     for $x = \{ x_1,...,x_K \}$ and $y = \{ y_1,...,y_K \}$, $x \prec y$
     means for any $i$, we have $x_i \leq y_i$ and there exists at least one
@@ -230,7 +230,7 @@
     \par
     (1) If
     \begin{align}
-        P^ug^u + f^u \prec P^vg^v + f^v
+        P^ug^u + f^u \prec P^vg^u + f^v
     \end{align}
     then $\eta^u < \eta^v$.
     \par
@@ -240,5 +240,33 @@
         P^{v^*}g^{v^*} + f^{v^*} \leq P^vg^{v^*} + f^v
     \end{align}
     we call it optimal inequality.
+    \par\noindent
+    \emph{proof for (2)}
+    \par
+    If (34) holds for $\forall v \in \Pi_s^d$, then
+    \begin{align}
+        P^{v^*}g^{v^*} + f^{v^*} &\leq P^vg^{v^*} + f^v \\
+        \pi^v \{P^{v^*}g^{v^*} + f^{v^*} - (P^vg^{v^*} + f^v) \} &\leq 0\\
+        \eta^{v^*} - \eta^v &\leq 0\\
+    \end{align}
+    so that $v^*$ is an optimal policy.
+    \par
+    On the other hand, if $v^*$ is a optimal policy, then we can get
+    (34) easily as well. \qed
+    \par\noindent
+    \emph{Theorem}
+    $v^*$ is the optimal policy for infinite time average performance
+    if and only if $v^*$ satisfies
+    \begin{align}
+        0 = \mathop{\min}_{v \in \Pi_s^d} \{ f^v + (P^v - I)g^{v^*} - \eta^{v^*}e \}
+    \end{align}
+    \emph{proof} Hint: Combine (34) and (11).
+    \paragraph{Algorithm}
+    In policy iteration, we select
+    \begin{align}
+        v_{k+1}(i) = \mathop{\arg\min}_{v(i)\in A(i)} \sum_{j=1}^K P_{ij} (v(i))g^{v_k}(i) + f(i, v(i))
+    \end{align}
+    \subsubsection{Performance derivative}
+    
 
     \end{document}
