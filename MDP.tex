@@ -267,6 +267,29 @@
         v_{k+1}(i) = \mathop{\arg\min}_{v(i)\in A(i)} \sum_{j=1}^K P_{ij} (v(i))g^{v_k}(i) + f(i, v(i))
     \end{align}
     \subsubsection{Performance derivative}
-    
+    If both transition matrix and performance function is related to
+    parameter $\theta \in I$, then we can consider the
+    \emph{parameterizing policy.}
+    Assume $P(\theta), f(\theta)$ are differentiable functions.
+    From Poisson equation (11),
+    \begin{align}
+        - \frac{\partial P}{\partial \theta} g + (I - P) \frac{\partial g}{\partial \theta} = \frac{\partial f}{\partial \theta} - \frac{\partial \eta}{\partial \theta}e
+    \end{align}
+    notice that $\pi P =  \pi, \pi e = 1$, we have
+    \begin{align}
+        - \pi \frac{\partial P}{\partial \theta} g + \pi (I - P) \frac{\partial g}{\partial \theta} &= \pi\frac{\partial f}{\partial \theta} - \pi\frac{\partial \eta}{\partial \theta}e \\
+        - \pi \frac{\partial P}{\partial \theta} g &= \pi\frac{\partial f}{\partial \theta} - \frac{\partial \eta}{\partial \theta} \\
+       \frac{\partial \eta}{\partial \theta}  &= \pi\frac{\partial f}{\partial \theta} + \pi \frac{\partial P}{\partial \theta} g\\
+    \end{align}
+    For $\theta = (\theta_1,...,\theta_m)$, we have
+    \begin{align}
+        \triangledown \eta = \Big( \frac{\partial \eta}{\partial \theta_1}, \frac{\partial \eta}{\partial \theta_2},..., \frac{\partial \eta}{\partial \theta_m} \Big)
+    \end{align} 
+    Any optimal policy $\theta^*$ should satisfies
+    \begin{align}
+        \theta^* = \mathop{\arg}_{\theta} \{ \triangledown \eta = 0 \}
+    \end{align}
+
+    \section{CTMDP}
 
     \end{document}
