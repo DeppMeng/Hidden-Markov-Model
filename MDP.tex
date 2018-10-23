@@ -251,8 +251,14 @@
     \end{align}
     so that $v^*$ is an optimal policy.
     \par
-    On the other hand, if $v^*$ is a optimal policy, then we can get
-    (34) easily as well. \qed
+    On the other hand, if $v^*$ is a optimal policy, then for any $v \in \Pi_s^d$,
+    we have $\eta^{v^*} \leq \eta^v$.
+    If (34) is not satisfied, then there exists a policy $u \in \Pi_s^d$,
+    \begin{align}
+        \sum_{j \in \Phi} P_{i_0 j} (u(i_0)) g^{v^*}(j) + f(i_0, u(i_0)) < \sum_{j \in \Phi} P_{i_0 j} (v^*(i_0)) g^{v^*}(j) + f(i_0, v^*(i_0))
+    \end{align}
+    then we can design $w \in \Phi_s^d$, let $w(i) = v^*(i), i \neq i_0$,
+    $w(i_0) = u(i_0)$, then we can get $\eta^w < \eta^{v^*}$, which is conflict to the assumption. \qed
     \par\noindent
     \emph{Theorem}
     $v^*$ is the optimal policy for infinite time average performance
@@ -279,7 +285,7 @@
     \begin{align}
         - \pi \frac{\partial P}{\partial \theta} g + \pi (I - P) \frac{\partial g}{\partial \theta} &= \pi\frac{\partial f}{\partial \theta} - \pi\frac{\partial \eta}{\partial \theta}e \\
         - \pi \frac{\partial P}{\partial \theta} g &= \pi\frac{\partial f}{\partial \theta} - \frac{\partial \eta}{\partial \theta} \\
-       \frac{\partial \eta}{\partial \theta}  &= \pi\frac{\partial f}{\partial \theta} + \pi \frac{\partial P}{\partial \theta} g\\
+       \frac{\partial \eta}{\partial \theta}  &= \pi\frac{\partial f}{\partial \theta} + \pi \frac{\partial P}{\partial \theta} g
     \end{align}
     For $\theta = (\theta_1,...,\theta_m)$, we have
     \begin{align}
