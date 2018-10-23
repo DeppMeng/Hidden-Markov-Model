@@ -320,11 +320,14 @@
     \end{align}
     $A_p$ is a group that has multiplication identity element $I-ep$.
     
+    \vspace{.5em}
     \par\noindent
     \emph{Definition}
     Inverse of $A$ in group $A_p$ is called the group inverse of $A$, denoted as $A^\#$
+    \vspace{.5em}
     \par\noindent
     \emph{Lemma} $A + ep$ is invertible.
+    \vspace{.5em}
     \par\noindent
     \emph{proof} If $A + ep$ is not invertible, then there exists a vector $y \neq 0$
     so that $y(A+ep) = 0$.
@@ -337,12 +340,14 @@
     Notice that from equation $pe = 1, pA = 0$ we can get the only solution
     $p$, so that without equation $ye = 1$ we can get $y$ must satisfies
     $y = cp, c \neq 0$, which is conflict with $ye = 0$. \qed
+    \vspace{.5em}
     \par\noindent
     \emph{Lemma}
     Group inverse of $A$ is
     \begin{align}
         A^\# = (A + ep)^{-1} - ep
     \end{align}
+    \vspace{.5em}
     \emph{proof}
     \begin{align}
         A[(A+ep)^{-1} - ep] &= I - ep \\
@@ -357,5 +362,21 @@
     state space $\Phi \times \Phi$. Appearently $Z^{i,j}$ is ergodic.
     Denote $S = \{ (k, k): k \in \Phi \}$,
     we define $T^{ij} = \mathop{\inf} \{ t: t \geq 0, Z^{ij}_t \in S \}$.
+
+    \vspace{.5em}
+    \par\noindent
+    \emph{Definition}
+    We call $d_{ij} = E \{ \int_0^{T^{ij}} [ f(Y_t^j) - f(Y_t^i) ] dt \}, i, j \in \Phi$
+    the realization factor of pertubation of Markov process $Y$ w.r.t performance function $f$.
+    Matrix $D = [d_{ij}$] is the corresponding realization matrix.
+
+    \vspace{.5em}
+    \par\noindent
+    \emph{Lemma}
+    \begin{align}
+        d_{ij} = \mathop{\lim}_{T \rightarrow \infty} \{ E [ \int_0^T f(Y_t^j)dt ] -  E [ \int_0^T f(Y_t^i)dt ] \}. i, j \in \Phi
+    \end{align}
+    
+    
 
     \end{document}
