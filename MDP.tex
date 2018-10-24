@@ -381,6 +381,22 @@
     \begin{align}
         d_{ij} = d_{ik} + d_{kj}, i, j, k \in \Phi
     \end{align}
-    
+    \begin{definition}
+        $g_i, i \in \Phi$ is called the potential of Markov process $Y$ at state $i$,
+        vector $g = ( g_1, ..., g_K)^\tau$ is called the potential vector, as well as potential.
+        \par
+        We define the $\alpha$-potential of $Y$ at $i$ as
+        \begin{align}
+            g_i^\alpha = E [ \int_0^\infty e^{-\alpha t}f(Y_t^i)], \alpha > 0
+        \end{align}
+    \end{definition}
+    from the definition we can get
+    \begin{align}
+        d_{ij} = g_j - g_i, i, j \in \Phi
+    \end{align}
+    or equivalently
+    \begin{align}
+        D = eg^\tau - ge^\tau
+    \end{align}
 
     \end{document}
