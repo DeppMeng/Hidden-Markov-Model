@@ -9,7 +9,9 @@
     \usepackage[width=122mm,left=12mm,paperwidth=146mm,height=193mm,top=12mm,paperheight=217mm]{geometry}
     \usepackage{multirow, multicol}
         
-    % \newtheorem{theorem}{Theorem}
+    % \newtheorem{theorem}{Theorem}[section]
+    % \newtheorem{lemma}[theorem]{Lemma}
+    % \newtheorem{definition}{Definition}[section]
     
     \begin{document}
     % \renewcommand\thelinenumber{\color[rgb]{0.2,0.5,0.8}\normalfont\sffamily\scriptsize\arabic{linenumber}\color[rgb]{0,0,0}}
@@ -152,10 +154,11 @@
     \begin{align}
         g^v(i) = E \{ \sum_{n=0}^\infty [f(X_n, v(X_n)) - \eta^v] | X_0 = i \}, i = \Phi
     \end{align}
-    \emph{Definition} $g^v = (g^v(1),..., g^v(K))^\tau$ is called performance potential vector,
+    \begin{definition}
+        $g^v = (g^v(1),..., g^v(K))^\tau$ is called performance potential vector,
     or potential of Markov Chain $X$ w.r.t performance function $f^v$ at state $i$.
-    \par\noindent
-    \emph{Lemma}
+    \end{definition} 
+    \begin{lemma}
     potential $g$ satisfies Poisson equation
     \begin{align}
         (I - P^v)g^v = f^v - \eta^v e
@@ -165,7 +168,8 @@
         g^v = (I - P^v + e \pi)^{-1} f^v + ce
     \end{align}
     where $c$ can be any constant.
-    \emph{proof}
+    \end{lemma}
+    \begin{proof}
     \begin{align}
         g(i) &= \mathop{\lim}_{N \rightarrow \infty} E \{ \sum_{n=0}^N [f(X_n, v(X_n)) - \eta^v] | X_0 = i \} \\
         &= \mathop{\lim}_{N \rightarrow \infty}  \sum_{n=0}^N E [f(X_n, v(X_n)) - \eta^v | X_0 = i ] \\
@@ -184,7 +188,8 @@
     That is 
     \begin{align}
         g^v = (I - P^v + e\pi)^{-1}f^v
-    \end{align} \qed
+    \end{align} 
+    \end{proof}
 
     Theoretically performance potential can be solved from Poisson equation,
     but when state space is too large, it is not very easy to be solved.
@@ -225,9 +230,7 @@
     for $x = \{ x_1,...,x_K \}$ and $y = \{ y_1,...,y_K \}$, $x \prec y$
     means for any $i$, we have $x_i \leq y_i$ and there exists at least one
     $j, 1 \leq j \leq K$ satisfies $x_j < y_j$.
-    \par\noindent
-    \emph{Lemma}
-    \par
+    \begin{lemma}
     (1) If
     \begin{align}
         P^ug^u + f^u \prec P^vg^u + f^v
@@ -240,9 +243,8 @@
         P^{v^*}g^{v^*} + f^{v^*} \leq P^vg^{v^*} + f^v
     \end{align}
     we call it optimal inequality.
-    \par\noindent
-    \emph{proof for (2)}
-    \par
+    \end{lemma}
+    \begin{proof}
     If (34) holds for $\forall v \in \Pi_s^d$, then
     \begin{align}
         P^{v^*}g^{v^*} + f^{v^*} &\leq P^vg^{v^*} + f^v \\
@@ -258,16 +260,19 @@
         \sum_{j \in \Phi} P_{i_0 j} (u(i_0)) g^{v^*}(j) + f(i_0, u(i_0)) < \sum_{j \in \Phi} P_{i_0 j} (v^*(i_0)) g^{v^*}(j) + f(i_0, v^*(i_0))
     \end{align}
     then we can design $w \in \Phi_s^d$, let $w(i) = v^*(i), i \neq i_0$,
-    $w(i_0) = u(i_0)$, then we can get $\eta^w < \eta^{v^*}$, which is conflict to the assumption. \qed
-    \par\noindent
-    \emph{Theorem}
-    $v^*$ is the optimal policy for infinite time average performance
-    if and only if $v^*$ satisfies
-    \begin{align}
-        0 = \mathop{\min}_{v \in \Pi_s^d} \{ f^v + (P^v - I)g^{v^*} - \eta^{v^*}e \}
-    \end{align}
-    \emph{proof} Hint: Combine (34) and (11).
-    \paragraph{Algorithm}
+    $w(i_0) = u(i_0)$, then we can get $\eta^w < \eta^{v^*}$, which is conflict to the assumption.
+    \end{proof}
+    \begin{theorem}
+        $v^*$ is the optimal policy for infinite time average performance
+        if and only if $v^*$ satisfies
+        \begin{align}
+            0 = \mathop{\min}_{v \in \Pi_s^d} \{ f^v + (P^v - I)g^{v^*} - \eta^{v^*}e \}
+        \end{align}
+    \end{theorem}
+    \begin{proof}
+        Hint: Combine (34) and (11).
+    \end{proof} 
+    \paragraph{Algorithm.}
     In policy iteration, we select
     \begin{align}
         v_{k+1}(i) = \mathop{\arg\min}_{v(i)\in A(i)} \sum_{j=1}^K P_{ij} (v(i))g^{v_k}(i) + f(i, v(i))
@@ -313,48 +318,45 @@
     which is also the infinite time average performance measure.
     \subsubsection{Realization matrix and performance potential}
     Firstly we introduce the concept of \emph{group inverse of infinitesimal generator matrix}.
-    \par\noindent
-    \emph{Definition}
-    \begin{align}
-        A_p = \{ A: pA = 0, Ae = 0 \}
-    \end{align}
-    $A_p$ is a group that has multiplication identity element $I-ep$.
-    
-    \vspace{.5em}
-    \par\noindent
-    \emph{Definition}
-    Inverse of $A$ in group $A_p$ is called the group inverse of $A$, denoted as $A^\#$
-    \vspace{.5em}
-    \par\noindent
-    \emph{Lemma} $A + ep$ is invertible.
-    \vspace{.5em}
-    \par\noindent
-    \emph{proof} If $A + ep$ is not invertible, then there exists a vector $y \neq 0$
-    so that $y(A+ep) = 0$.
-    \begin{align}
-        y(A+ep) &= 0 \\
-        yAe + yepe &= 0 \\
-        ye &= 0
-    \end{align}
-    then we have $yA = 0$ as well.
-    Notice that from equation $pe = 1, pA = 0$ we can get the only solution
-    $p$, so that without equation $ye = 1$ we can get $y$ must satisfies
-    $y = cp, c \neq 0$, which is conflict with $ye = 0$. \qed
-    \vspace{.5em}
-    \par\noindent
-    \emph{Lemma}
-    Group inverse of $A$ is
-    \begin{align}
-        A^\# = (A + ep)^{-1} - ep
-    \end{align}
-    \vspace{.5em}
-    \emph{proof}
-    \begin{align}
-        A[(A+ep)^{-1} - ep] &= I - ep \\
-        A[(A+ep)^{-1} - ep](A + ep) &= (I - ep)(A + ep) \\
-        A - AepA - Aepep &= A + ep - epA - epep \\
-        A &= A + ep - ep 
-    \end{align} \qed
+    \begin{definition}
+        \begin{align}
+            A_p = \{ A: pA = 0, Ae = 0 \}
+        \end{align}
+        $A_p$ is a group that has multiplication identity element $I-ep$.
+    \end{definition}
+    \begin{definition}
+        Inverse of $A$ in group $A_p$ is called the group inverse of $A$, denoted as $A^\#$
+    \end{definition}
+    \begin{lemma}
+        $A + ep$ is invertible.
+    \end{lemma} 
+    \begin{proof}
+        If $A + ep$ is not invertible, then there exists a vector $y \neq 0$
+        so that $y(A+ep) = 0$.
+        \begin{align}
+            y(A+ep) &= 0 \\
+            yAe + yepe &= 0 \\
+            ye &= 0
+        \end{align}
+        then we have $yA = 0$ as well.
+        Notice that from equation $pe = 1, pA = 0$ we can get the only solution
+        $p$, so that without equation $ye = 1$ we can get $y$ must satisfies
+        $y = cp, c \neq 0$, which is conflict with $ye = 0$.
+    \end{proof}
+    \begin{lemma}
+        Group inverse of $A$ is
+        \begin{align}
+            A^\# = (A + ep)^{-1} - ep
+        \end{align}
+    \end{lemma}
+    \begin{proof}
+        \begin{align}
+            A[(A+ep)^{-1} - ep] &= I - ep \\
+            A[(A+ep)^{-1} - ep](A + ep) &= (I - ep)(A + ep) \\
+            A - AepA - Aepep &= A + ep - epA - epep \\
+            A &= A + ep - ep 
+        \end{align}
+        \end{proof}
     \par
     For any $i, j \in \Phi$, let $Y^{i} = \{ Y_t: Y_0 = i; t \geq 0 \}$ and $Y^{j} = \{ Y_t: Y_0 = j; t \geq 0 \}$,
     for any $i, j \in \Phi$, $Y^i$ and $Y^j$ are independent.
@@ -362,21 +364,23 @@
     state space $\Phi \times \Phi$. Appearently $Z^{i,j}$ is ergodic.
     Denote $S = \{ (k, k): k \in \Phi \}$,
     we define $T^{ij} = \mathop{\inf} \{ t: t \geq 0, Z^{ij}_t \in S \}$.
-
-    \vspace{.5em}
-    \par\noindent
-    \emph{Definition}
-    We call $d_{ij} = E \{ \int_0^{T^{ij}} [ f(Y_t^j) - f(Y_t^i) ] dt \}, i, j \in \Phi$
-    the realization factor of pertubation of Markov process $Y$ w.r.t performance function $f$.
-    Matrix $D = [d_{ij}$] is the corresponding realization matrix.
-
-    \vspace{.5em}
-    \par\noindent
-    \emph{Lemma}
-    \begin{align}
-        d_{ij} = \mathop{\lim}_{T \rightarrow \infty} \{ E [ \int_0^T f(Y_t^j)dt ] -  E [ \int_0^T f(Y_t^i)dt ] \}. i, j \in \Phi
-    \end{align}
     
+    \begin{definition}
+        We call $d_{ij} = E \{ \int_0^{T^{ij}} [ f(Y_t^j) - f(Y_t^i) ] dt \}, i, j \in \Phi$
+        the realization factor of pertubation of Markov process $Y$ w.r.t performance function $f$.
+        Matrix $D = [d_{ij}$] is the corresponding realization matrix.
+    \end{definition}
+
+    \begin{lemma}
+        \begin{align}
+            d_{ij} = \mathop{\lim}_{T \rightarrow \infty} \{ E [ \int_0^T f(Y_t^j)dt ] -  E [ \int_0^T f(Y_t^i)dt ] \}. i, j \in \Phi
+        \end{align}
+    \end{lemma}
+    \par
+    From (59) we can get
+    \begin{align}
+        d_{ij} = d_{ik} + d_{kj}, i, j, k \in \Phi
+    \end{align}
     
 
     \end{document}
