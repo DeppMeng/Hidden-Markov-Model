@@ -414,13 +414,13 @@
             E \{ f(Y_t^i) \} = \sum_{k=1}^K f(k) P_{ik}(t)
         \end{align}
         is the $i$th element of vector $e^{At} f$.
-        {\color{red}
+        % {\color{red}
         \begin{align}
             d_{ij}(T) &= E [ \int_0^T f(Y_t^j)dt ] -  E [ \int_0^T f(Y_t^i)dt ] \\
             %&= \sum_{k=1}^K P_{jk}(T) [ \int_0^T f(Y_t^j)dt ] -  \sum_{k=1}^K P_{ik}(T) [ \int_0^T f(Y_t^i)dt ]
             &= \int_0^T [ E\{Y_t^j\} - E\{Y_t^i\} ]dt \\
             &= \int_0^T [ (e^{At} f)_j - (e^{At} f)_i ]dt
-        \end{align}}
+        \end{align}
         From
         \begin{align}
             D(T) = \int_0^T [ (ef^\tau(e^{At})^\tau - e^{At}fe^\tau ]dt
@@ -451,7 +451,52 @@
         Then we prove the solution is unique.
         \par
         Assume the equation (64) has two different solution
-        $D_1 = eg_1^\tau - g_1e^\tau$ and $D_2 = eg_2^\tau - g_2e^\tau$
+        $D_1 = eg_1^\tau - g_1e^\tau$ and $D_2 = eg_2^\tau - g_2e^\tau, g_1, g_2 \in \mathcal{R}^K$.
+        Denote $D = D_1 - D_2 = eg^\tau - ge^\tau$, where $g = g_1 - g_2$.
+        Since $Ae = 0$, 
+        \begin{align}
+            eg^\tau A^\tau - Age^\tau &= 0 \\
+            A^\# eg^\tau A^\tau - A^\# Age^\tau &= 0
+        \end{align}
+        Notice that $A^\# A = I - ep$ and $A^\# e = 0$,
+        so we have
+        \begin{align}
+            &(I - ep) ge^\tau = 0 \\
+            &ge^\tau = epge^\tau = pg ee^\tau
+        \end{align}
+        So that $D = (ge^\tau)^\tau - ge^\tau = 0$, that is $D_1 = D_2$.
     \end{proof}
+    \begin{lemma}
+        potential $g$ is all the solutions of Poisson equation
+        \begin{align}
+            Ag = -f + \eta e
+        \end{align}
+        and $g = -A^\# f + \beta e, \beta \in \mathcal{R}$.
+    \end{lemma}
+    \begin{proof}
+        Combine (63) and (64), we can get
+        \begin{align}
+            e(Ag + f)^\tau = (Ag + f)e^\tau
+        \end{align}
+        Since solution to equation $ez^\tau = ze^\tau$ is $z = \beta e, \beta \in \mathcal{R}$,
+        then the equation is equivalent to 
+        \begin{align}
+            Ag + f = \beta e
+        \end{align}
+        notice that $pA = 0, pf = \eta, pe = 1$, so
+        \begin{align}
+            Ag + f &= \beta e, \beta \in \mathcal{R} \\
+            pAg + pf &= p\beta e \\
+            \eta &= \beta
+        \end{align}
+        so that $g$ is a solution of equation (85).
+        \par
+        Now we prove that $g = -A^\# f + \beta e, \beta \in \mathcal{R}$.
+        Since the solution to $pA = 0, pe = 1$ is unique,
+        $rank(A) = K - 1$. Notice that $g = A^\# f$ is a solution
+        to euqation (85), so that all solutions are
+        $g = A^\# f + \beta e, \beta \in \mathcal{R}$.
+    \end{proof}
+    \subsection{Average Cost Performance Optimization}
 
     \end{document}
