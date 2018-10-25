@@ -398,5 +398,26 @@
     \begin{align}
         D = eg^\tau - ge^\tau
     \end{align}
+    \begin{lemma}
+        $D$ is the only solution of the equation
+        \begin{align}
+            AD + DA^\tau = -F
+        \end{align}
+        in $V = \{ eg^\tau - ge^\tau: g \in \mathcal{R}^K \}$.
+        $F = ef^\tau - fe^\tau$.
+    \end{lemma}
+    \begin{proof}
+        Denote $P_{ij}(t) = P \{ Y_t^i = j \}$, $P(t) = [P_{ij}(t)]$.
+        Since the state space is finite, $P(t) = e^{At}$.
+        So,
+        \begin{align}
+            E \{ f(Y_t^i) \} = \sum_{k=1}^K f(k) P_{ik}(t)
+        \end{align}
+        is the $i$th element of vector $e^{At} f$.
+        \begin{align}
+            d_{ij}(T) &= E [ \int_0^T f(Y_t^j)dt ] -  E [ \int_0^T f(Y_t^i)dt ] \\
+            &= \sum_{k=1}^K P_{jk}(T) [ \int_0^T f(Y_t^j)dt ] -  \sum_{k=1}^K P_{ik}(T) [ \int_0^T f(Y_t^i)dt ]
+        \end{align}
+    \end{proof}
 
     \end{document}
