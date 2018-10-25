@@ -414,10 +414,44 @@
             E \{ f(Y_t^i) \} = \sum_{k=1}^K f(k) P_{ik}(t)
         \end{align}
         is the $i$th element of vector $e^{At} f$.
+        {\color{red}
         \begin{align}
             d_{ij}(T) &= E [ \int_0^T f(Y_t^j)dt ] -  E [ \int_0^T f(Y_t^i)dt ] \\
-            &= \sum_{k=1}^K P_{jk}(T) [ \int_0^T f(Y_t^j)dt ] -  \sum_{k=1}^K P_{ik}(T) [ \int_0^T f(Y_t^i)dt ]
+            %&= \sum_{k=1}^K P_{jk}(T) [ \int_0^T f(Y_t^j)dt ] -  \sum_{k=1}^K P_{ik}(T) [ \int_0^T f(Y_t^i)dt ]
+            &= \int_0^T [ E\{Y_t^j\} - E\{Y_t^i\} ]dt \\
+            &= \int_0^T [ (e^{At} f)_j - (e^{At} f)_i ]dt
+        \end{align}}
+        From
+        \begin{align}
+            D(T) = \int_0^T [ (ef^\tau(e^{At})^\tau - e^{At}fe^\tau ]dt
         \end{align}
+        and $Ae = 0$, we can get
+        \begin{align}
+            &AD(T) + D(T)A^\tau \\
+            = &A\int_0^T [ (ef^\tau(e^{At})^\tau - e^{At}fe^\tau ]dt
+            + \int_0^T [ (ef^\tau(e^{At})^\tau - e^{At}fe^\tau ]dt A^\tau \\
+            = &\int_0^T [ (ef^\tau(e^{At})^\tau A^\tau - Ae^{At}fe^\tau ]dt \\
+            = &ef^\tau [ \int_0^T (e^{At})^\tau A^\tau dt ] - [\int_0^T Ae^{At} dt] fe^\tau\\
+            = &ef^\tau [e^{AT} - e^0]^\tau - [e^{AT} - e^0] fe^\tau
+        \end{align}
+        Since $\mathop{\lim}_{T \rightarrow \infty} P_{ij}(T) = p(j)$,
+        that is $\mathop{\lim}_{T \rightarrow \infty} e^{At} = ep, e^0 = I$,
+        and 
+        \begin{align}
+            ef^\tau(ep)^\tau = e(epf)^\tau = (pf)ee^\tau
+        \end{align}
+        then in (74), let $T \rightarrow \infty$, we have
+        \begin{align}
+            &AD(T) + D(T)A^\tau \\
+            = &\mathop{\lim}_{T\rightarrow\infty}ef^\tau [e^{AT} - e^0]^\tau - [e^{AT} - e^0] fe^\tau \\
+            = &ef^\tau [ep - e^0]^\tau - [ep - e^0] fe^\tau \\
+            = &ef^\tau(ep)^\tau - ef^\tau - epfe^\tau + fe^\tau \\
+            = &fe^\tau - ef^\tau = -F
+        \end{align}
+        Then we prove the solution is unique.
+        \par
+        Assume the equation (64) has two different solution
+        $D_1 = eg_1^\tau - g_1e^\tau$ and $D_2 = eg_2^\tau - g_2e^\tau$
     \end{proof}
 
     \end{document}
