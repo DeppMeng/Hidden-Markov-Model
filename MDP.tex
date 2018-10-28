@@ -498,5 +498,38 @@
         $g = A^\# f + \beta e, \beta \in \mathcal{R}$.
     \end{proof}
     \subsection{Average Cost Performance Optimization}
+    % \begin{align}
+    %     % \triangledown\frac{1}{2} a_N^\tau P a_N = P a_N \\
+    %     \frac{\partial ( a_N^\tau P a_N)}{\partial a_i} 
+    %     &= \frac{\partial (2 \sum_{k = 1}^N (a_kP_{ki}a_i) - P_{ii}a_i^2)}{\partial a_i}\\
+    %     &= \frac{\partial (2 \sum_{k = 1, k \neq i}^N (a_kP_{ki}a_i) + P_{ii}a_i^2)}{\partial a_i}\\
+    %     &= 2 \sum_{k = 1, k \neq i}^N a_k P_{ki} + 2 a_i P_{ii}\\
+    %     &= 2 \sum_{k = 1}^N a_k P_{ki}
+    % \end{align}
+    For a CTMDP, we have
+    \begin{align}
+        p^v e = 1, A^v e = 0, p^v A^v = 0
+    \end{align}
+    Denote $f^v = (f(1, v(1), ..., f(K, v(K)))^\tau$.
+    \begin{lemma}
+        For any $u, v \in \Omega_s$, we have
+        \begin{align}
+            \eta^u - \eta^v = p^v [(f^u + A^ug^u) - (f^v + A^vg^u)]
+        \end{align}
+    \end{lemma}
+    \begin{proof}
+        \begin{align}
+            % \eta^u - \eta^v = p^v [(f^u + A^ug^u) - (f^v + A^vg^u)] \\
+            e(\eta^u - \eta^v) &= A^u g^u + f^u - A^v g^v - f^v \\
+            p^v e(\eta^u - \eta^v) &= p^v (A^u g^u + f^u - A^v g^v - f^v) \\
+            \eta^u - \eta^v &= p^v [(A^u g^u + f^u ) - (A^vg^u + f^v)]
+        \end{align}
+    \end{proof}
+    \begin{theorem}
+        $v^* \in \Omega_s$ is the optimal steady policy of average cost performance if and only if
+        \begin{align}
+            f^{v^*} + A^{v^*} g^{v^*} \leq f^v + A^v g^{v^*}, v \in \Omega
+        \end{align}
+    \end{theorem}
 
     \end{document}
