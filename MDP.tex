@@ -520,16 +520,56 @@
     \begin{proof}
         \begin{align}
             % \eta^u - \eta^v = p^v [(f^u + A^ug^u) - (f^v + A^vg^u)] \\
-            e(\eta^u - \eta^v) &= A^u g^u + f^u - A^v g^v - f^v \\
-            p^v e(\eta^u - \eta^v) &= p^v (A^u g^u + f^u - A^v g^v - f^v) \\
-            \eta^u - \eta^v &= p^v [(A^u g^u + f^u ) - (A^vg^u + f^v)]
+            % e(\eta^u - \eta^v) &= A^u g^u + f^u - A^v g^v - f^v \\
+            % p^v e(\eta^u - \eta^v) &= p^v (A^u g^u + f^u - A^v g^v - f^v) \\
+            % \eta^u - \eta^v &= p^v [(A^u g^u + f^u ) - (A^vg^u + f^v)]
+            A^ug^u &= -f^u + \eta^u e\\
+            p^vA^ug^u &= -p^v f^u + \eta^u \\
+            \eta^u &= p^vf^u + p^vA^ug^u\\
+            \eta^u - \eta^v &= p^vf^u + p^vA^ug^u - p^vf^v \\
+            \eta^u - \eta^v &= p^v (f^u + A^ug^u - f^v) \\
+            \eta^u - \eta^v &= p^v [f^u + A^u g^u -(f^v + A^v g^u)]
         \end{align}
     \end{proof}
     \begin{theorem}
-        $v^* \in \Omega_s$ is the optimal steady policy of average cost performance if and only if
+        $v^* \in \Omega_s$ is an optimal steady policy of average cost performance if and only if
         \begin{align}
             f^{v^*} + A^{v^*} g^{v^*} \leq f^v + A^v g^{v^*}, v \in \Omega
         \end{align}
     \end{theorem}
+    \begin{proof}
+        If
+        \begin{align}
+            f^{v^*} + A^{v^*} g^{v^*} \leq f^v + A^v g^{v^*}, v \in \Omega
+        \end{align}
+        then we have
+        \begin{align}
+            f^{v^*} + A^{v^*} g^{v^*} - (f^v + A^v g^{v^*}) &\leq 0 \\
+            p^v[f^{v^*} + A^{v^*} g^{v^*} - (f^v + A^v g^{v^*})] &\leq 0 \\
+            \eta^{v^*} - \eta^v &\leq 0
+        \end{align}
+    \end{proof}
+    \begin{theorem}
+        $v^* \in \Omega_s$ is an optimal steady policy of
+         MDP $(Y, \Phi, D, A^v, f^v)$ if and only if
+         \begin{align}
+             0 = \mathop{\min}_{v \in \Omega_s} \{ f^v + A^v g^{v^*} - e\eta^{v^*} \}
+         \end{align}
+    \end{theorem}
+    \begin{proof}
+        From (99), we have if $v^* \in \Omega_s$ is an optimal policy,
+        \begin{align}
+            &f^{v^*} + A^{v^*} g^{v^*} \leq f^v + A^v g^{v^*}, v \in \Omega \\
+            &0 \leq f^v + A^v g^{v^*} - (f^{v^*} + A^{v^*} g^{v^*}) \\
+            &0 \leq f^v + A^v g^{v^*} - \eta^{v^*} e
+        \end{align}
+    \end{proof}
+
+    \paragraph{Performance derivative and optimization algorithm}
+    Let us assume that $a_{ij} = a_{ij}(\theta)$, $f = f(i, \theta)$
+    \begin{align}
+        \frac{\partial \eta}{\partial \theta} &= \frac{\partial p}{\partial \theta} f
+        + p \frac{\partial f}{\partial \theta} \\
+    \end{align}
 
     \end{document}
