@@ -568,8 +568,38 @@
     \paragraph{Performance derivative and optimization algorithm}
     Let us assume that $a_{ij} = a_{ij}(\theta)$, $f = f(i, \theta)$
     \begin{align}
-        \frac{\partial \eta}{\partial \theta} &= \frac{\partial p}{\partial \theta} f
-        + p \frac{\partial f}{\partial \theta} \\
+        \frac{\partial A}{\partial \theta} g + A \frac{\partial g}{\partial \theta}
+        &= - \frac{\partial f}{\partial \theta} + \frac{\partial \eta}{\partial \theta} e \\
+        p\frac{\partial A}{\partial \theta} g + pA \frac{\partial g}{\partial \theta}
+        &= - p\frac{\partial f}{\partial \theta} + p\frac{\partial \eta}{\partial \theta} e \\
+        p\frac{\partial A}{\partial \theta} g &= - p\frac{\partial f}{\partial \theta} + \frac{\partial \eta}{\partial \theta} \\
+        \frac{\partial \eta}{\partial \theta} &= p\frac{\partial A}{\partial \theta} g + p\frac{\partial f}{\partial \theta}
+    \end{align}
+    From $Ae = 0$, we have $\frac{\partial A}{\partial \theta} e = 0$,
+    so
+    \begin{align}
+        \frac{\partial A}{\partial \theta}g = 
+        \frac{\partial A}{\partial \theta}(-A^\# f + \beta e) =
+        - \frac{\partial A}{\partial \theta}A^\# f
+    \end{align}
+    and
+    \begin{align}
+        \frac{\partial A}{\partial \theta} D p^\tau = 
+        \frac{\partial A}{\partial \theta} (eg^\tau - ge^\tau)p^\tau = 
+        \frac{\partial A}{\partial \theta} ge^\tau p^\tau = 
+        \frac{\partial A}{\partial \theta} g
+    \end{align}
+    from above, we have
+    \begin{align}
+        \frac{\partial \eta}{\partial \theta} &=
+        p\frac{\partial A}{\partial \theta} g +
+        p\frac{\partial f}{\partial \theta} \\
+        &= 
+        - p\frac{\partial A}{\partial \theta} A^\#f +
+        p\frac{\partial f}{\partial \theta} \\
+        &= 
+        p\frac{\partial A}{\partial \theta} Dp^\tau +
+        p\frac{\partial f}{\partial \theta}
     \end{align}
 
     \end{document}
