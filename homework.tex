@@ -1,0 +1,117 @@
+\documentclass[runningheads]{llncs}
+    \usepackage{graphicx}
+    \usepackage{amsmath,amssymb} % define this before the line numbering.
+    \usepackage{ruler}
+    \usepackage{color}
+    \usepackage[width=122mm,left=12mm,paperwidth=146mm,height=193mm,top=12mm,paperheight=217mm]{geometry}
+    \usepackage{multirow, multicol}
+        
+    % \newtheorem{theorem}{Theorem}[section]
+    % \newtheorem{lemma}[theorem]{Lemma}
+    % \newtheorem{definition}{Definition}[section]
+    
+    \begin{document}
+    % \renewcommand\thelinenumber{\color[rgb]{0.2,0.5,0.8}\normalfont\sffamily\scriptsize\arabic{linenumber}\color[rgb]{0,0,0}}
+    % \renewcommand\makeLineNumber {\hss\thelinenumber\ \hspace{6mm} \rlap{\hskip\textwidth\ \hspace{6.5mm}\thelinenumber}}
+    % \linenumbers
+    \pagestyle{headings}
+    \mainmatter
+    \def\ECCV18SubNumber{1452}  % Insert your submission number here
+    
+    \title{Homework} % Replace with your title
+    
+    \titlerunning{ECCV-18 submission ID \ECCV18SubNumber}
+    
+    \authorrunning{ECCV-18 submission ID \ECCV18SubNumber}
+    
+    \author{Depu Meng}
+    \institute{Oct. $2018$}
+    
+    
+    \maketitle
+    \subsection{}
+    \begin{proof}
+        (1). From the definition of measure, we have
+        \begin{equation}
+            \mu (\bigcup_{n=1}^\infty E_n) = \sum_{n=1}^\infty \mu(E_n)
+        \end{equation}
+        if $E_i \bigcap E_j = \varnothing, i \neq j$.
+        So for any $E \in \mathcal{F}$,
+        \begin{equation}
+            \mu(E) = \mu ( \varnothing \bigcup E) = \mu(E) + \mu(\varnothing)
+        \end{equation}
+        \par
+        that is, $\mu(\varnothing) = 0$.
+        \par
+        (2).Consider $E_1, E_2,..., E_n, E_{n+1}, ... \in \mathcal{F}$,
+        $E_i \bigcap E_j = \varnothing, i \neq j$, then from the definition
+        we have
+        \begin{align}
+            \mu (\bigcup_{k=1}^\infty E_k) &= \sum_{k=1}^\infty \mu(E_k) \\
+            \mu (\bigcup_{k=n+1}^\infty E_k) &= \sum_{k=n+1}^\infty \mu(E_k)
+        \end{align}
+        so that we have
+        \begin{align}
+            \mu (\bigcup_{k=1}^n E_k) &= \sum_{k=1}^n \mu(E_k)
+        \end{align}
+        \par
+        (3). If $E_1 \subset E_2$, then $E_2 = E_1 \bigcup (E_2 - E_1)$,
+        apparently $E_1 \bigcap (E_2 - E_1) = \varnothing$.
+        Then from the definition we have
+        \begin{align}
+            \mu(E_2) = \mu ( E_1 \bigcup (E_2 - E_1)) = \mu(E_1) + \mu(E_2 - E_1) \geq \mu(E_1)
+        \end{align}
+    \end{proof}
+    \subsection{}
+    \begin{proof}
+        \begin{align}
+            P(A) &= P(A \bigcap (\bigcup_{i=1}^\infty B_i)) 
+            = P(\bigcup_{i=1}^\infty (A \bigcap B_i)) \\
+            &= \sum_{i=1}^\infty P(A \bigcap B_i)
+            = \sum_{i=1}^\infty P(B_i) P(A | B_i)
+        \end{align}
+    \end{proof}
+    \subsection{}
+    \begin{proof}
+        \begin{align}
+            \int_0^\infty (1 - F(t))dt &= \int_0^\infty (1 - P\{ X \leq t \})dt \\
+            &= \int_0^\infty P \{ X > t \}dt \\
+            &= \int_0^\infty \int_t^\infty f(s)dsdt \\
+            &= \int_0^\infty \int_0^s f(s) dt ds \\
+            &= \int_0^\infty s f(s) ds \\
+            &= E[X]
+        \end{align}
+    \end{proof}
+    \subsection{}
+    \begin{proof}
+        From property (2), we have
+        \begin{align}
+            P \{ N(s + t) - N(s) = k \} = P \{ N(t) = k \}
+        \end{align}
+        Firstly consider $k = 0$, denote $P_k(t) = P \{ N(t) = k \}$,
+        apparently for $h > 0$
+        \begin{align}
+            P \{ N(t + h) = 0 \} &= P \{ N(t) = 0, N(t + h) - N(t) = 0 \} \\
+            &= P_0(t)P_0(h)
+        \end{align}
+        On the other hand, from property (3), (4), we have
+        \begin{align}
+            P_0(h) = 1 - (\lambda h + o(h))
+        \end{align}
+        So that
+        \begin{align}
+            \frac{P_0(t + h) - P_0(t)}{h} = -(\lambda P_0(t) + \frac{o(h)}{h})
+        \end{align}
+        Let $h \rightarrow 0$,
+        \begin{align}
+            P_0'(t) = - \lambda P_0(t)
+        \end{align}
+        By solving this differential equation with constraint $P_0(0) = 1$,
+        we can get
+        \begin{align}
+            P_0(t) = e^{-\lambda t}
+        \end{align}
+    \end{proof}
+
+
+    \end{document}
