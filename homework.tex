@@ -111,7 +111,200 @@
         \begin{align}
             P_0(t) = e^{-\lambda t}
         \end{align}
+        when $n > 0$,
+        similarly we have
+        \begin{align}
+            P_n(t + h) = P_n(t) (1 - \lambda h - o(h)) + 
+            P_{n-1}(t) (\lambda h + o(h)) + P_{n-2}(t) o(h)
+        \end{align}
+        that is
+        \begin{align}
+            P_n'(t) = -\lambda P_n(t) + \lambda P_{n-1}(t) \\
+            \frac{d}{dt}[e^{\lambda t} P_n(t)] = e^{\lambda t} P_{n-1}(t)
+        \end{align}
+        Notice that $P_0(t) = e^{-\lambda t}$, so we have
+        \begin{align}
+            P_1(t) = \lambda t e^{-\lambda t}
+        \end{align}
+        then apparently we have
+        \begin{align}
+            P_n(t) = \frac{(\lambda t)^n}{n!} e^{-\lambda t}
+        \end{align}
     \end{proof}
-
-
+    \subsection{}
+    Denote the transition matrix of $Y$, $Q = [Q_{ij}]$,
+    the steady distribution of $Y$ $y$.
+    Then we have $Q_{ij} = p_i, i = j$, $Q_{ij} = (1 - p_i)P_{ij}, i \neq j$.
+    \par
+    For steady distribution $\pi$, we have
+    \begin{align}
+        \pi P &= \pi \\
+        \sum_{i=1}^K \pi_i P_{ij} &= \pi_j, \forall j \in \Phi
+    \end{align}
+    For steady distribution $y$, we have
+    \begin{align}
+        y Q &= y \\
+        \sum_{i=1}^K y_i Q_{ij} &= y_j, \forall j \in \Phi \\
+        \sum_{i=1, i \neq j}^K y_i (1 - p_i)P_{ij}
+         &= (1 - p_j) y_j, \forall j \in \Phi 
+    \end{align}
+    apparently $y' = (y_1(1 - p_1), y_2(1 - p_2)...y_K(1 - p_K)$
+    is a solution of equation $(28)$.
+    so that we have
+    \begin{align}
+        y_i = \frac{\pi_i}{(1-p_i)} / \sum_{j = 1}^K \frac{\pi_j}{(1-p_j)}
+    \end{align}
+    \subsection{}
+    \begin{proof}
+        (1) From Theory 1.15, we have
+        \begin{align}
+            P \{ X_{n+1} = j, T_{n+1} - T_n \leq t | X_0, ..., X_n = i; T_0,...,T_n \}
+             = P_{ij} (1 - e^{-\lambda(i) t})
+        \end{align}
+        Let $t \rightarrow \infty$, we have
+        \begin{align}
+            P \{ X_{n+1} = j | X_0,..., X_n = i \} = P_{ij} = P \{ X_{n+1} = j | X_n = i \}
+        \end{align}
+        (2) 
+        Due to
+        \begin{align}
+            P_{ij} \leq 0, P_{ii} = 0, \sum_{j \in \Phi} P_{ij} = \sum_{j \neq i, j \in \Phi} P_{ij} = 1
+        \end{align}
+        we have
+        \begin{align}
+            P \{ X_{n+1} = j, T_{n+1} - T_n \leq t | X_n = i \}
+            &= P_{ij} (1 - e^{-\lambda(i) t}) \\
+            \sum_{j=1, j \neq i}^K P \{ X_{n+1} = j, T_{n+1} - T_n \leq t | X_n = i\}
+            &= \sum_{j=1, j \neq i}^K P_{ij} (1 - e^{-\lambda(i) t}) \\
+            P \{ X_{n+1} \neq i, T_{n+1} - T_n \leq t | X_n = i\}
+            &= (1 - e^{-\lambda(i) t})
+        \end{align}
+        That is,
+        \begin{align}
+            P \{ X_{n+1} = i, T_{n+1} - T_n \leq t | X_n = i\}
+            &= e^{-\lambda(i) t}
+        \end{align}
+    \end{proof}
+    \subsection{}
+    \begin{proof}
+        Denote $P \{ \alpha_n \} = P \{ X_1 = i_1,..., X_n = i_n, Y_1 = v_{j_1},..., Y_n = v_{j_n} \}$.
+        Then we have
+        \begin{align}
+            P_n &= P \{ X_1 = i_1,..., X_n = i_n, Y_1 = v_{j_1},..., Y_n = v_{j_n} \} \\
+            &= P \{X_n = i_n, Y_n = v_{j_n} |\alpha_{n-1} \} P \{\alpha_{n-1} \} \\
+            &= P \{Y_n = v_{j_n} | \alpha_{n-1}, X_n = i_n \} P \{X_n = i_n |\alpha_{n-1} \} P \{\alpha_{n-1} \} \\
+            &= P \{Y_n = v_{j_n} | X_n = i_n \} P \{X_n = i_n | X_{n-1} = i_{n-1} \} P \{\alpha_{n-1} \} \\
+            &= b_{i_n j_n} a_{i_{n-1} i_n} P \{ \alpha_{n-1} \}
+        \end{align}
+        Notice that $P \{ \alpha_1 \} = \pi_{i_1} b_{i_1 j_1}$, from
+        above, we can get that
+        \begin{align}
+            P \{ \mathbf{X} = x, \mathbf{Y} = y \} = \pi_{i_1} b_{i_1 j_1} ...
+             a_{i_{N-1} i_N} b_{i_N j_N}
+        \end{align}
+    \end{proof}
+    \subsection{}
+    \begin{proof}
+        \begin{align}
+            P \{ \mathbf{Y} = y | \mathbf{X} = x \} &= 
+            \frac{P \{ \mathbf{Y} = y, \mathbf{X} = x \}}{P \{ \mathbf{X} = x\}} \\
+            &= b_{i_1 j_1}...b_{i_N j_N}
+        \end{align}
+    \end{proof}
+    \subsection{}
+    \begin{proof}
+        \begin{align}
+            &\alpha_{n+1}(i) 
+            = P \{ Y_1 = v_{j_1}, Y_n = v_{j_n}, Y_{n+1} = v_{j_{n+1}}, X_{n+1} = i | \lambda \} \\
+            &= \sum_{k=1}^K P \{ Y_1 = v_{j_1},..., Y_n = v_{j_n}, Y_{n+1} = v_{j_{n+1}}, X_{n} = k, X_{n+1} = i | \lambda \} \\
+            &= \sum_{k=1}^K P_A P_B P_C
+        \end{align}
+        where
+        \begin{align}
+            &P_A = P \{ Y_1 = v_{j_1},..., Y_n = v_{j_n}, X_{n} = k | \lambda \} \\
+            &P_B = P \{ X_{n+1} = i | Y_1 = v_{j_1},..., Y_n = v_{j_n}, X_{n} = k, \lambda \} \\ 
+            &P_C = P \{ Y_{n+1} = v_{j_{n+1}} | Y_1 = v_{j_1},..., Y_n = v_{j_n}, X_{n} = k, X_{n+1} = i, \lambda\}
+        \end{align}
+        Notice that for $P_A$, we have
+        \begin{align}
+            P_A = P \{ Y_1 = v_{j_1},..., Y_n = v_{j_n}, X_{n} = k | \lambda \} = \alpha_n(k) \\
+        \end{align}
+        For $P_B$, we have
+        \begin{align}
+            P_B &= P \{ X_{n+1} = i | Y_1 = v_{j_1},..., Y_n = v_{j_n}, X_{n} = k, \lambda \} \\
+            &= P \{ X_{n+1} = i | X_{n} = k, \lambda \} \\
+            &= a_{ki}
+        \end{align}
+        For $P_C$, we have
+        \begin{align}
+            P_C &= P \{ Y_{n+1} = v_{j_{n+1}} | Y_1 = v_{j_1},..., Y_n = v_{j_n}, X_{n} = k, X_{n+1} = i, \lambda\} \\
+            &= P \{ Y_{n+1} = v_{j_{n+1}} | X_{n+1} = i, \lambda\} \\
+            &= b_{ij_{n+1}}
+        \end{align}
+        Combine the three equations together, we have
+        \begin{align}
+            \alpha_{n+1}(i) = \sum_{k=1}^K P_A P_B P_C = \sum_{k=1}^K \alpha_n(k) a_{ki} b_{ij_{n+1}}
+        \end{align}
+    \end{proof}
+    \subsection{}
+    \begin{proof}
+        \begin{align}
+            \beta_{n}(i) &= P \{ Y_{n+1} = v_{j_{n+1}},...,Y_N = v_{j_N} | X_n = i, \lambda \} \\
+            &= \sum_{k=1}^K P \{ Y_{n+1} = v_{j_{n+1}},...,Y_N = v_{j_N}, X_{n+1} = k | X_n = i, \lambda \} \\
+            &= \sum_{k=1}^K P_X P_Y P_Z
+        \end{align}
+        where
+        \begin{align}
+            &P_X = P \{ X_{n+1} = k | X_n = i, \lambda \} \\
+            &P_Y = P \{ Y_{n+2} = v_{j_{n+1}},..., Y_N = v_{j_n} | X_{n+1} = k, X_n = i, \lambda \} \\
+            &P_Z = P \{ Y_{n+1} = v_{j_{n+1}} | X_{n+1} = k, X_n = i, Y_{n+2} = v_{j_{n+1}},..., Y_N = v_{j_n}, \lambda \}
+        \end{align}
+        For $P_X$, we have
+        \begin{align}
+            P_X = P \{ X_{n+1} = k | X_n = i, \lambda \} = a_{ik}
+        \end{align}
+        For $P_Y$, we have
+        \begin{align}
+            P_Y &= P \{ Y_{n+2} = v_{j_{n+1}},..., Y_N = v_{j_n} | X_{n+1} = k, X_n = i, \lambda \} \\
+            &= P \{ Y_{n+2} = v_{j_{n+1}},..., Y_N = v_{j_n} | X_{n+1} = k, \lambda \} \\
+            &= \beta_{n+1}(k)
+        \end{align}
+        For $P_Z$, we have
+        \begin{align}
+            P_Z &= P \{ Y_{n+1} = v_{j_{n+1}} | X_{n+1} = k, X_n = i, Y_{n+2} = v_{j_{n+1}},..., Y_N = v_{j_n}, \lambda \} \\
+            &= P \{ Y_{n+1} = v_{j_{n+1}} | X_{n+1} = k, \lambda \} \\
+            &= b_{kj_{n+1}}
+        \end{align}
+        Combine the three equations, we have
+        \begin{align}
+            \beta_n(i) = \sum_{k=1}^K P_X P_Y P_Z = \sum_{k=1}^K \beta_{n+1}(k) a_{ik} b_{kj_{n+1}}
+        \end{align}
+    \end{proof}
+    \subsection{}
+    \begin{proof}
+        \begin{align}
+            &\delta_{n+1}(i) \\
+            &= \max_{i_1...i_{n}} P \{ X_{n+1} = i,..., X_1 = i_1; Y_{n+1} = v_{j_{n+1}},..., Y_1 = v_{j_1} |\lambda \} \\
+            &= b_{i j_{n+1}} \max_{i_1...i_{n}} P \{ X_{n+1} = i,..., X_1 = i_1; Y_{n} = v_{j_n},..., Y_1 = v_{j_1} |\lambda \} \\
+            &= b_{i j_{n+1}} \max_{i_n} \max_{i_1...i_{n-1}} [ P \{ X_{n} = i_n,..., X_1 = i_1; Y_{n} = v_{j_n},..., Y_1 = v_{j_1} |\lambda \} \\
+            & \ \ \ \ P \{ X_{n+1} = i | X_{n} = i_n,..., X_1 = i_1; Y_{n} = v_{j_n},..., Y_1 = v_{j_1} |\lambda \} ] \\
+            &= b_{i j_{n+1}} \max_{i_n} [a_{i_n i} \delta_{n}(i_n)]
+        \end{align}
+    \end{proof}
+    \subsection{}
+    \begin{proof}
+        \begin{align}
+            &P \{ X_n = i, X_{n+1} = j, \mathbf{Y} = y | \lambda \} \\
+            &= P \{ X_n = i, Y_1 = v_{j_1},..., Y_n = v_{j_n} | \lambda \} \\
+            & \ \ \ \ P \{ X_{n+1} = j, Y_{n+1} = v_{j_{n+1}},..., Y_N = v_{j_N} | X_n = i, Y_1 = v_{j_1},..., Y_n = v_{j_n}, \lambda \} \\ 
+            &= \alpha_n(i) P \{ X_{n+1} = j, Y_{n+1} = v_{j_{n+1}},..., Y_N = v_{j_N} | X_n = i, \lambda \} \\
+            &= \alpha_n(i) a_{ij} P \{ Y_{n+1} = v_{j_{n+1}},..., Y_N = v_{j_N} | X_n = i, X_{n+1} = j, \lambda \} \\
+            &= \alpha_n(i) a_{ij} b_{jj_{n+1}} P \{ Y_{n+2} = v_{j_{n+2}},..., Y_N = v_{j_N} | X_{n+1} = j, \lambda \} \\
+            &= \alpha_n(i) a_{ij} b_{jj_{n+1}} \beta_{n+1} (j)
+        \end{align}
+    \end{proof}
+    \subsection{}
+    \begin{proof}
+        
+    \end{proof}
     \end{document}
