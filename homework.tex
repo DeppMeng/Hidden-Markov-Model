@@ -305,7 +305,26 @@
     \end{proof}
     \subsection{}
     \begin{proof}
-        
+        \begin{align}
+            d_{ij} &= E [ \sum_{n=0}^\infty f (X_n) | X_0 = j ] - E [ \sum_{n=0}^\infty f (X_n) | X_0 = i ] \\
+            &= \mathop{\lim}_{N \rightarrow \infty} \{ E [ \sum_{n=0}^N f (X_n) | X_0 = j ] - E [ \sum_{n=0}^N f (X_n) | X_0 = i ] \} \\
+            &= \mathop{\lim}_{N \rightarrow \infty} \sum_{n=0}^N \{ E [ f (X_n) | X_0 = j ] - E [ f (X_n) | X_0 = i ] \} \\
+            &= \mathop{\lim}_{N \rightarrow \infty} \sum_{n=0}^N \{ (P^n)_j f - (P^n)_i f \} 
+        \end{align}
+        So that we have
+        \begin{align}
+            D = \mathop{\lim}_{N \rightarrow \infty} \sum_{n=0}^N \{ ef^\tau (P^n)^\tau - P^n f e^\tau \}
+        \end{align}
+        Then,
+        \begin{align}
+            &D - PDP^\tau \\
+            &= \mathop{\lim}_{N \rightarrow \infty} \sum_{n=0}^N  \{ ef^\tau (P^n)^\tau - P^n f e^\tau - (Pef^\tau (P^n)^\tau P^\tau - PP^n f e^\tau P^\tau ) \} \\
+            &= \mathop{\lim}_{N \rightarrow \infty} \sum_{n=0}^N  \{ ef^\tau ((P^n)^\tau - (P^{n+1})^\tau) - (P^n - P^{n+1}) fe^\tau \} \\
+            &= \mathop{\lim}_{N \rightarrow \infty} ef^\tau ((P^0)^\tau - (P^{n+1})^\tau) - (P^0 - P^{n+1}) fe^\tau  \\
+            &= \mathop{\lim}_{N \rightarrow \infty} ef^\tau (I - (P^{n+1})^\tau) - (I - P^{n+1}) fe^\tau \\
+            &= ef^\tau (I - e \pi) - (I - pi^\tau e^\tau) fe^\tau \\
+            &= ef^\tau - fe^\tau = F
+        \end{align}
     \end{proof}
     \subsection{}
     \begin{proof}
@@ -319,5 +338,141 @@
         \end{align}
         Conflict!
     \end{proof}
+    \subsection{}
+    \begin{proof}
+        \par
+        (1) Sufficient condition:
+        \par
+        If
+        \begin{align}
+            f^{v^*} + A^{v^*} g^{v^*} \leq f^v + A^v g^{v^*}, v \in \Omega
+        \end{align}
+        then we have
+        \begin{align}
+            f^{v^*} + A^{v^*} g^{v^*} - (f^v + A^v g^{v^*}) &\leq 0 \\
+            p^v[f^{v^*} + A^{v^*} g^{v^*} - (f^v + A^v g^{v^*})] &\leq 0 \\
+            \eta^{v^*} - \eta^v &\leq 0
+        \end{align}
+        that is, $v^*$ is an optimal policy.
+        \par
+        (2) Necessary condition:
+        If $v^*$ is an optimal policy, then we have $\eta^{v^*} - \eta^v \leq 0, \forall v \in \Omega_s$.
+        If (106) does not stand, then there exist a policy $u$, so that at state $i_0$, we have
+        \begin{align}
+            f^{v^*}(i_0) + A_{i_0}^{v^*} g^{v^*} > f^v(i_0) + A_{i_0}^v g^{v^*}
+        \end{align}
+        Then if we set policy $u'(i) = v^*(i), i \neq i_0$, at state $i_0$, $u'(i_0) = u(i_0)$.
+        So apparently we have
+        \begin{align}
+            f^{v^*} + A^{v^*} g^{v^*} > f^{u'} + A^{u'} g^{v^*}
+        \end{align}
+        From the sufficient condition, we can see that $v^*$ is not an optimal policy which is conflict with
+        our assumption.
+    \end{proof}
+    \subsection{}
+    \begin{proof}
+        \par
+        (1) Sufficient condition: If
+        \begin{align}
+            0 = \mathop{\min}_{v \in \Omega_s} \{ f^v + A^v g^{v^*} - e \eta^{v^*} \}
+        \end{align}
+        we can get
+        \begin{align}
+            f^{v^*} + A^{v^*} g^{v^*} \leq f^v + A^v g^{v^*}, v \in \Omega
+        \end{align}
+        So from Theory 3.2 we know that $v^*$ is an optimal policy.
+        \par
+        (2) Necessary condition: If $v^*$ is an optimal policy, then from Theory 3.2
+        we have
+        \begin{align}
+            f^{v^*} + A^{v^*} g^{v^*} \leq f^v + A^v g^{v^*}, v \in \Omega
+        \end{align}
+        that is
+        \begin{align}
+            0 \leq f^v + A^v g^{v^*} - e \eta^{v^*}, v \in \Omega_s
+        \end{align}
+        set $v = v^*$
+        we have
+        \begin{align}
+            0 = f^v + A^v g^{v^*} - e \eta^{v^*}, v \in \Omega_s
+        \end{align}
+        that is
+        \begin{align}
+            0 = \mathop{\min}_{v \in \Omega_s} \{ f^v + A^v g^{v^*} - e \eta^{v^*} \}
+        \end{align}
+    \end{proof}
+    \subsection{}
+    \begin{proof}
+        Notice that 
+        \begin{align}
+            U_\alpha = \int_0^\infty e^{-\alpha t} P(t)dt
+        \end{align} exists, and $U_\alpha > 0$.
+        \par
+        Due to
+        \begin{align}
+            P_{ij}(t) = \int_0^t h(j, t - s) R_{ij}(ds)
+        \end{align}
+        We have
+        \begin{align}
+            [U_\alpha]_{ij} &= \int_0^\infty e^{-\alpha t} P_{ij}(t)dt \\
+            &= \int_0^\infty e^{-\alpha t} \int_0^t h(j, t - s) R_{ij}dsdt \\
+            &= \int_0^\infty \int_0^t e^{-\alpha t} h(j, t - s) R_{ij}dsdt \\
+            &= \int_0^\infty \int_s^\infty e^{-\alpha t} h(j, t - s) R_{ij}dtds \\
+            &= \int_0^\infty e^{-\alpha s} \int_s^\infty e^{-\alpha (t - s)} h(j, t - s) R_{ij}dtds \\
+            &= \int_0^\infty e^{-\alpha s} \int_0^\infty e^{-\alpha \tau} h(j, \tau) R_{ij}d\tau ds \\
+            &= \int_0^\infty e^{-\alpha s} h_\alpha (j) R_{ij} ds \\
+            &= h_\alpha (j) [R_\alpha]_{ij} 
+        \end{align}
+        So that we have
+        \begin{align}
+            U_\alpha = R_\alpha H_\alpha = (I - Q_\alpha)^{-1} H_\alpha
+        \end{align}
+        Then we have
+        \begin{align}
+            U_\alpha (\alpha I - A_\alpha) = (I - Q_\alpha)^{-1} H_\alpha H_\alpha^{-1}(I - Q_\alpha) = I
+        \end{align}
+    \end{proof}
+    \subsection{}
+    \begin{proof}
+        Notice that
+        \begin{align}
+            [U_\alpha]_i e = \sum_{j=1}^K \int_0^\infty e^{-\alpha t} P_{ij}(t)dt = \int_0^\infty e^{-\alpha t} dt = \frac{e}{\alpha}
+        \end{align}
+        From 0.17, we have
+        \begin{align}
+            \alpha I - A_\alpha = U_\alpha^{-1}
+        \end{align}
+        then we have for $\alpha > 0$,
+        \begin{align}
+            &( U_\alpha - \frac{ep_\alpha}{\alpha(1 - \alpha)}) ( U_\alpha^{-1} + ep_\alpha) \\
+            &= I - \frac{ep_\alpha U_\alpha^{-1}}{\alpha(1 + \alpha)} + \frac{ep_\alpha}{\alpha} - \frac{ep_\alpha}{\alpha(1+\alpha)} \\
+            &= I - \frac{ep_\alpha (\alpha I - A_\alpha) - \alpha ep_\alpha }{\alpha(1 + \alpha)} \\
+            &= I - \frac{ep_\alpha A_\alpha }{\alpha(1 + \alpha)} \\
+            &= I
+        \end{align}
+        when $\alpha = 0$, we need to prove that $A + ep$ is invertible.
+        \par
+        If $A + ep$ is not invertible, then there exists a vector $y \neq 0$
+        so that $y(A+ep) = 0$.
+        \begin{align}
+            y(A+ep) &= 0 \\
+            yAe + yepe &= 0 \\
+            ye &= 0
+        \end{align}
+        then we have $yA = 0$ as well.
+        Notice that from equation $pe = 1, pA = 0$ we can get the only solution
+        $p$, so that without equation $ye = 1$ we can get $y$ must satisfies
+        $y = cp, c \neq 0$, which is conflict with $ye = 0$.
 
+    \end{proof}
+    \subsection{}
+    \begin{proof}
+        \begin{align}
+            (\alpha I - A_\alpha) g_\alpha &= f - \frac{ep_\alpha f}{1 + \alpha} \\
+            g_\alpha &= U_\alpha (f - \frac{ep_\alpha f}{1 + \alpha}) \\
+            g_\alpha &= \eta_\alpha - \frac{ep_\alpha f}{\alpha (1 + \alpha)} \\
+            \eta_\alpha &= g_\alpha + \frac{ep_\alpha f}{\alpha (1 + \alpha)}
+        \end{align}
+    \end{proof}
+    \subsection{}
     \end{document}

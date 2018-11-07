@@ -418,7 +418,7 @@
         \begin{align}
             d_{ij}(T) &= E [ \int_0^T f(Y_t^j)dt ] -  E [ \int_0^T f(Y_t^i)dt ] \\
             %&= \sum_{k=1}^K P_{jk}(T) [ \int_0^T f(Y_t^j)dt ] -  \sum_{k=1}^K P_{ik}(T) [ \int_0^T f(Y_t^i)dt ]
-            &= \int_0^T [ E\{Y_t^j\} - E\{Y_t^i\} ]dt \\
+            &= \int_0^T [ E\{f(Y_t^j)\} - E\{f(Y_t^i)\} ]dt \\
             &= \int_0^T [ (e^{At} f)_j - (e^{At} f)_i ]dt
         \end{align}
         From
