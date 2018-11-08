@@ -410,17 +410,17 @@
         \par
         Due to
         \begin{align}
-            P_{ij}(t) = \int_0^t h(j, t - s) R_{ij}(ds)
+            P_{ij}(t) = \int_0^t h(j, t - s) R_{ij}(s)ds
         \end{align}
         We have
         \begin{align}
             [U_\alpha]_{ij} &= \int_0^\infty e^{-\alpha t} P_{ij}(t)dt \\
-            &= \int_0^\infty e^{-\alpha t} \int_0^t h(j, t - s) R_{ij}dsdt \\
-            &= \int_0^\infty \int_0^t e^{-\alpha t} h(j, t - s) R_{ij}dsdt \\
-            &= \int_0^\infty \int_s^\infty e^{-\alpha t} h(j, t - s) R_{ij}dtds \\
-            &= \int_0^\infty e^{-\alpha s} \int_s^\infty e^{-\alpha (t - s)} h(j, t - s) R_{ij}dtds \\
-            &= \int_0^\infty e^{-\alpha s} \int_0^\infty e^{-\alpha \tau} h(j, \tau) R_{ij}d\tau ds \\
-            &= \int_0^\infty e^{-\alpha s} h_\alpha (j) R_{ij} ds \\
+            &= \int_0^\infty e^{-\alpha t} \int_0^t h(j, t - s) R_{ij}(s)dsdt \\
+            &= \int_0^\infty \int_0^t e^{-\alpha t} h(j, t - s) R_{ij}(s)dsdt \\
+            &= \int_0^\infty \int_s^\infty e^{-\alpha t} h(j, t - s) R_{ij}(s)dtds \\
+            &= \int_0^\infty e^{-\alpha s} \int_s^\infty e^{-\alpha (t - s)} h(j, t - s) R_{ij}(s)dtds \\
+            &= \int_0^\infty e^{-\alpha s} \int_0^\infty e^{-\alpha \tau} h(j, \tau) R_{ij}(s)d\tau ds \\
+            &= \int_0^\infty e^{-\alpha s} h_\alpha (j) R_{ij}(s) ds \\
             &= h_\alpha (j) [R_\alpha]_{ij} 
         \end{align}
         So that we have
